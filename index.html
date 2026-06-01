@@ -46,7 +46,11 @@
                 <a href="#contact" class="btn btn--primary">Hire Me</a>
                 <a href="#what-i-do" class="btn btn--ghost">See What I Do</a>
                 <a href="Moksh_Resume_v3_fixed.docx" download class="btn btn--ghost" id="resume-download">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                        <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
+                        <polyline points="7 10 12 15 17 10" />
+                        <line x1="12" y1="15" x2="12" y2="3" />
+                    </svg>
                     Resume
                 </a>
             </div>
@@ -167,15 +171,17 @@
         <div class="section__header">
             <span class="section__number">02</span>
             <h2 class="section__title">Proof, Not Promises</h2>
-            <p class="section__subtitle">Case studies and shipped projects.</p>
+            <p class="section__subtitle">Client work and shipped products.</p>
         </div>
 
-        <div class="cards">
+        <h3 class="subsection__title">Client Projects</h3>
+        <div class="cards cards--carousel">
             <div class="card" data-reveal>
                 <div class="card__icon">🧾</div>
                 <h3 class="card__title">InvoPilot SaaS</h3>
                 <p class="card__text">
-                    Invoicing SaaS built with Supabase and PostgreSQL. Handled Google OAuth2, Razorpay subscriptions, webhooks, tier-based access, payment state machines, email reminders, and dunning logic.
+                    Invoicing SaaS built with Supabase and PostgreSQL. Handled Google OAuth2, Razorpay subscriptions,
+                    webhooks, tier-based access, payment state machines, email reminders, and dunning logic.
                 </p>
                 <div class="card__tags">
                     <span>Supabase</span><span>PostgreSQL</span><span>OAuth2</span><span>Razorpay</span>
@@ -185,12 +191,28 @@
                 <div class="card__icon">🏡</div>
                 <h3 class="card__title">Luxentra Homes</h3>
                 <p class="card__text">
-                    Next.js landing page with contact form. Handled Vercel deployment, custom domain setup, and DNS configuration.
+                    Next.js landing page with contact form. Handled Vercel deployment, custom domain setup, and DNS
+                    configuration.
                 </p>
                 <div class="card__tags">
                     <span>Next.js</span><span>React</span><span>Vercel</span><span>DNS</span>
                 </div>
             </div>
+            <div class="card" data-reveal>
+                <div class="card__icon">🛒</div>
+                <h3 class="card__title">Trydent</h3>
+                <p class="card__text">
+                    Shopify storefront production-ready setup. Handled Cloudflare DNS, server troubleshooting, and
+                    deployment checks.
+                </p>
+                <div class="card__tags">
+                    <span>Shopify</span><span>Cloudflare</span><span>DNS</span>
+                </div>
+            </div>
+        </div>
+
+        <h3 class="subsection__title" style="margin-top: 3rem;">Personal Projects</h3>
+        <div class="cards cards--carousel">
             <div class="card" data-reveal>
                 <div class="card__icon">🏋️‍♂️</div>
                 <h3 class="card__title">Gym Exercises Client</h3>
@@ -232,8 +254,6 @@
                     Source Code
                 </a>
             </div>
-
-
         </div>
     </section>
 
@@ -253,7 +273,8 @@
                     <h3 class="timeline__role">Full-Stack Engineer - Consulting & Contract Work</h3>
                     <p class="timeline__desc">
                         Client work across SaaS, e-commerce, and real estate. Each project owned end-to-end.<br><br>
-                        &bull; <strong>InvoPilot:</strong> Invoicing SaaS on Supabase + PostgreSQL. Handled OAuth2, Razorpay, webhooks, state machines.<br>
+                        &bull; <strong>InvoPilot:</strong> Invoicing SaaS on Supabase + PostgreSQL. Handled OAuth2,
+                        Razorpay, webhooks, state machines.<br>
                         &bull; <strong>Luxentra Homes:</strong> Next.js landing page, Vercel deploy, DNS setup.<br>
                         &bull; <strong>Trydent:</strong> Shopify storefront production-ready setup and Cloudflare DNS.
                     </p>
@@ -269,10 +290,13 @@
                     <div class="timeline__period">Jul 2024 - Jul 2025</div>
                     <h3 class="timeline__role">Backend Engineer - Pintude</h3>
                     <p class="timeline__desc">
-                        Ran the microservice backend for image/video generation. End-to-end, from trigger to finished asset.
-                        Custom job queue for concurrency, retries, and failure recovery. Cron crawlers fed content into the queues.
+                        Ran the microservice backend for image/video generation. End-to-end, from trigger to finished
+                        asset.
+                        Custom job queue for concurrency, retries, and failure recovery. Cron crawlers fed content into
+                        the queues.
                         Plugged in an LLM API to classify news headlines.
-                        MongoDB schemas for job state and media metadata. Remotion + Node Canvas did the asset generation, output went to S3.
+                        MongoDB schemas for job state and media metadata. Remotion + Node Canvas did the asset
+                        generation, output went to S3.
                         Everything ran on EC2. PM2 for processes, Nginx for traffic.
                     </p>
                     <div class="timeline__tags">
@@ -288,7 +312,8 @@
                     <h3 class="timeline__role">Full-Stack Developer - Infinite Locus</h3>
                     <p class="timeline__desc">
                         Shopify Liquid layouts and UI features. Page load dropped on the high-traffic views.
-                        REST APIs with Node.js, Express, Sequelize, MySQL. Query times on the busier endpoints dropped measurably.
+                        REST APIs with Node.js, Express, Sequelize, MySQL. Query times on the busier endpoints dropped
+                        measurably.
                     </p>
                     <div class="timeline__tags">
                         <span>Node.js</span><span>MySQL</span><span>Express</span><span>Sequelize</span>
@@ -331,7 +356,13 @@
                     LinkedIn
                 </a>
                 <a href="Moksh_Resume_v3_fixed.docx" download class="contact__link" id="resume-link">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                        <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+                        <polyline points="14 2 14 8 20 8" />
+                        <line x1="16" y1="13" x2="8" y2="13" />
+                        <line x1="16" y1="17" x2="8" y2="17" />
+                        <polyline points="10 9 9 9 8 9" />
+                    </svg>
                     Resume
                 </a>
             </div>
@@ -340,7 +371,7 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <p>&copy; 2026 Moksh Budhiraja. Built with code, not a template.</p>
+        <p>&copy; 2026 Moksh Budhiraja.</p>
     </footer>
 
     <script src="script.js"></script>
