@@ -1,8 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import { ExternalLink, Dumbbell, PieChart, ChevronDown, ChevronUp } from "lucide-react";
+
+// (Skipping constant declarations for brevity in thought, but need to include them in replacement)
 
 const CLIENT_PROJECTS = [
   {
@@ -60,6 +62,29 @@ const PERSONAL_PROJECTS = [
 
 export default function Projects() {
   const [showAllPersonal, setShowAllPersonal] = useState(false);
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [isHovered, setIsHovered] = useState(false);
+
+  useEffect(() => {
+    const scrollContainer = scrollRef.current;
+    if (!scrollContainer) return;
+
+    let animationFrameId: number;
+
+    const autoScroll = () => {
+      if (!isHovered) {
+        if (scrollContainer.scrollLeft >= scrollContainer.scrollWidth - scrollContainer.clientWidth - 1) {
+          scrollContainer.scrollLeft = 0; // Loop back
+        } else {
+          scrollContainer.scrollLeft += 1; // Speed
+        }
+      }
+      animationFrameId = requestAnimationFrame(autoScroll);
+    };
+
+    animationFrameId = requestAnimationFrame(autoScroll);
+    return () => cancelAnimationFrame(animationFrameId);
+  }, [isHovered]);
 
   const displayedPersonalProjects = showAllPersonal 
     ? PERSONAL_PROJECTS 
@@ -67,23 +92,28 @@ export default function Projects() {
 
   return (
     <section id="proof" className="max-w-7xl mx-auto py-20 overflow-hidden">
-      {/* --- CLIENT WORK (INFINITE CAROUSEL) --- */}
+      {/* --- CLIENT WORK (NATIVE AUTO-SCROLL) --- */}
       <div className="mb-12 px-6 flex flex-col md:flex-row md:items-end justify-between gap-6">
         <div>
           <span className="text-sm font-semibold tracking-wider text-indigo-500 mb-2 block">01 — PROOF NOT PROMISES</span>
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground">Client Work</h2>
         </div>
-        <p className="text-foreground/60 max-w-md text-sm font-medium">
-          Infinite scroll. Pauses on hover so you can actually read it.
-        </p>
       </div>
 
-      <div className="relative flex overflow-hidden w-full group mask-edges pb-20">
-        <div className="flex gap-6 pr-6 animate-marquee group-hover:[animation-play-state:paused] hover:[animation-play-state:paused] w-max">
+      <div className="relative w-full pb-10 mask-edges">
+        <div 
+          ref={scrollRef}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          onTouchStart={() => setIsHovered(true)}
+          onTouchEnd={() => setIsHovered(false)}
+          className="flex gap-6 px-6 overflow-x-auto snap-x snap-mandatory modern-scrollbar pb-6 w-full"
+        >
+          {/* Tripled list for a seamless native scroll buffer */}
           {[...CLIENT_PROJECTS, ...CLIENT_PROJECTS, ...CLIENT_PROJECTS].map((proj, idx) => (
             <div 
               key={idx} 
-              className="w-[350px] md:w-[450px] shrink-0 bg-card border border-border/60 rounded-3xl p-8 hover:bg-accent/30 transition-colors shadow-sm flex flex-col"
+              className="w-[320px] md:w-[420px] shrink-0 bg-card border border-border/60 rounded-3xl p-8 hover:bg-accent/30 transition-colors shadow-sm flex flex-col snap-start"
             >
               <div className="flex items-center gap-4 mb-6">
                 <div className={`relative w-14 h-14 overflow-hidden shadow-sm shrink-0 flex items-center justify-center ${proj.rounded}`}>
@@ -204,12 +234,18 @@ export default function Projects() {
           mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
           -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
         }
-        .animate-marquee {
-          animation: marquee 35s linear infinite;
+        .modern-scrollbar::-webkit-scrollbar {
+          height: 8px;
         }
-        @keyframes marquee {
-          0% { transform: translateX(0%); }
-          100% { transform: translateX(-33.33%); }
+        .modern-scrollbar::-webkit-scrollbar-track {
+          background: transparent;
+        }
+        .modern-scrollbar::-webkit-scrollbar-thumb {
+          background-color: rgba(99, 102, 241, 0.3);
+          border-radius: 20px;
+        }
+        .modern-scrollbar::-webkit-scrollbar-thumb:hover {
+          background-color: rgba(99, 102, 241, 0.6);
         }
       `}</style>
     </section>
