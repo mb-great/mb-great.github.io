@@ -23,6 +23,10 @@ const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add('revealed');
+            // Free GPU layer after transition ends
+            entry.target.addEventListener('transitionend', () => {
+                entry.target.style.willChange = 'auto';
+            }, { once: true });
             revealObserver.unobserve(entry.target);
         }
     });
@@ -51,17 +55,22 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // ========================================
 if (window.matchMedia('(min-width: 769px)').matches) {
     document.querySelectorAll('.card').forEach(card => {
+        let ticking = false;
         card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
-            const rotateX = ((y - centerY) / centerY) * -3;
-            const rotateY = ((x - centerX) / centerX) * 3;
-
-            card.style.transform = `translateY(-4px) perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-        });
+            if (ticking) return;
+            ticking = true;
+            requestAnimationFrame(() => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = ((y - centerY) / centerY) * -3;
+                const rotateY = ((x - centerX) / centerX) * 3;
+                card.style.transform = `translateY(-4px) perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                ticking = false;
+            });
+        }, { passive: true });
 
         card.addEventListener('mouseleave', () => {
             card.style.transform = '';

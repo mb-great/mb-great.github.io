@@ -81,15 +81,20 @@ a {
         linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
     background-size: 60px 60px;
     pointer-events: none;
+    contain: strict;
+    content-visibility: auto;
 }
 
 .bg-glow {
     position: fixed;
     border-radius: 50%;
-    filter: blur(120px);
+    filter: blur(80px);
     pointer-events: none;
     z-index: 0;
     opacity: 0.4;
+    will-change: transform;
+    contain: layout style;
+    transform: translateZ(0);
 }
 
 .bg-glow--1 {
@@ -429,6 +434,8 @@ a {
     transition: all 0.4s var(--ease-out);
     position: relative;
     overflow: hidden;
+    will-change: transform;
+    contain: layout style;
 }
 
 .card::before {
@@ -692,6 +699,7 @@ a {
     opacity: 0;
     transform: translateY(30px);
     transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+    will-change: opacity, transform;
 }
 
 [data-reveal].revealed {
