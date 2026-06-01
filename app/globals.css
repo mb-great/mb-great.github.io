@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+}
+
+@layer base {
+  :root {
+    --background: #ffffff;
+    --foreground: #09090b;
+    --card: #ffffff;
+    --card-foreground: #09090b;
+    --border: #e4e4e7;
+    --accent: #f4f4f5;
+    --accent-foreground: #18181b;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --background: #06060e;
+      --foreground: #fafafa;
+      --card: #0c0c16;
+      --card-foreground: #fafafa;
+      --border: #1f1f2e;
+      --accent: #1f1f2e;
+      --accent-foreground: #fafafa;
+    }
+  }
+}
+
+@layer base {
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+}
+
+/* Hide scrollbar completely across the app for that sleek Apple/Samsung vibe */
+::-webkit-scrollbar {
+  display: none;
+}
+* {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Ambient glow utilities */
+.glow-blur {
+  filter: blur(100px);
+  will-change: transform;
+  transform: translateZ(0);
+}
