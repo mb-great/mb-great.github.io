@@ -15,8 +15,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <body className={`${inter.className} relative bg-background text-foreground min-h-screen selection:bg-indigo-500/30 selection:text-indigo-200`}>
+    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
+      <body className={`${inter.className} relative bg-background text-foreground min-h-screen selection:bg-indigo-500/30 selection:text-indigo-200`} suppressHydrationWarning>
         {/* Ambient background Apple/Samsung style glass effects */}
         <div className="fixed inset-0 z-[-1] overflow-hidden pointer-events-none">
           <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] rounded-full bg-indigo-500/10 glow-blur animate-pulse" />
