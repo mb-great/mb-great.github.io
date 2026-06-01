@@ -77,3 +77,68 @@ if (window.matchMedia('(min-width: 769px)').matches) {
         });
     });
 }
+
+// ========================================
+// CAROUSEL AUTO-SCROLL & DRAG
+// ========================================
+const carousels = document.querySelectorAll('.cards--carousel');
+carousels.forEach(carousel => {
+    // Clone children to create an infinite scroll illusion
+    const children = Array.from(carousel.children);
+    children.forEach(child => {
+        const clone = child.cloneNode(true);
+        // Remove scroll reveal attributes from clones to avoid re-triggering
+        clone.removeAttribute('data-reveal');
+        clone.classList.add('revealed');
+        carousel.appendChild(clone);
+    });
+
+    let isAutoScrolling = true;
+    let isDown = false;
+    let startX;
+    let scrollLeftPos;
+
+    const autoScroll = () => {
+        if (isAutoScrolling && !isDown) {
+            carousel.scrollLeft += 1;
+            // Reset seamlessly when scrolled halfway (past original items)
+            if (carousel.scrollLeft >= carousel.scrollWidth / 2) {
+                carousel.scrollLeft = 0;
+            }
+        }
+        requestAnimationFrame(autoScroll);
+    };
+    requestAnimationFrame(autoScroll);
+
+    // Pause auto-scroll on hover/touch
+    carousel.addEventListener('mouseenter', () => isAutoScrolling = false);
+    carousel.addEventListener('mouseleave', () => {
+        isAutoScrolling = true;
+        isDown = false;
+        carousel.style.cursor = 'grab';
+    });
+    carousel.addEventListener('touchstart', () => isAutoScrolling = false, {passive: true});
+    carousel.addEventListener('touchend', () => isAutoScrolling = true, {passive: true});
+
+    // Manual drag logic
+    carousel.style.cursor = 'grab';
+    carousel.addEventListener('mousedown', (e) => {
+        isDown = true;
+        isAutoScrolling = false;
+        startX = e.pageX - carousel.offsetLeft;
+        scrollLeftPos = carousel.scrollLeft;
+        carousel.style.cursor = 'grabbing';
+    });
+    carousel.addEventListener('mouseup', () => {
+        isDown = false;
+        isAutoScrolling = true;
+        carousel.style.cursor = 'grab';
+    });
+    carousel.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - carousel.offsetLeft;
+        const walk = (x - startX) * 2; // Scroll-fast multiplier
+        carousel.scrollLeft = scrollLeftPos - walk;
+    });
+});
