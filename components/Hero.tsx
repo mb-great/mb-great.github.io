@@ -25,7 +25,7 @@ export default function Hero() {
         <div className="flex flex-col sm:flex-row gap-4 items-center">
           <a 
             href="mailto:mokshbudhiraja03@gmail.com" 
-            className="w-full sm:w-auto px-8 py-4 bg-foreground text-background font-medium rounded-2xl hover:scale-[1.02] active:scale-[0.98] transition-transform flex items-center justify-center gap-2"
+            className="w-full sm:w-auto px-8 py-4 bg-foreground text-background font-medium rounded-2xl hover:scale-[1.02] active:scale-[0.98] transition-transform flex items-center justify-center gap-2 shadow-sm"
           >
             <Mail size={18} />
             Hire Me
@@ -33,10 +33,10 @@ export default function Hero() {
           <a 
             href="/Moksh_Resume_v3_fixed.docx" 
             download
-            className="w-full sm:w-auto px-8 py-4 bg-accent/50 text-foreground font-medium rounded-2xl hover:bg-accent border border-border/50 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2"
+            className="w-full sm:w-auto px-8 py-4 bg-accent/50 text-foreground font-medium rounded-2xl hover:bg-accent border border-border/50 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 shadow-sm"
           >
             <Download size={18} />
-            Resume
+            Download Resume
           </a>
           
           <div className="flex gap-4 ml-0 sm:ml-4 mt-4 sm:mt-0">
