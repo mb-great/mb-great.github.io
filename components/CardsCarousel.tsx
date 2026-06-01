@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import Image from "next/image";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, Dumbbell, PieChart } from "lucide-react";
 
 const PROJECTS = [
   {
@@ -36,18 +36,18 @@ const PROJECTS = [
   {
     title: "Gym Exercises Client",
     desc: "Frontend search application integrating a robust third-party backend API (RapidAPI). Demonstrates clean API data consumption.",
-    img: "https://www.google.com/s2/favicons?domain=netlify.com&sz=128",
+    icon: Dumbbell,
     tags: ["React", "RapidAPI", "Frontend"],
-    rounded: "rounded-lg",
+    rounded: "rounded-lg bg-indigo-500/10 text-indigo-500",
     link: "https://mb-s-gym-exercises.netlify.app/",
     github: "https://github.com/mb-great/gym-exercises"
   },
   {
     title: "Pie Chart Engine",
     desc: "Backend pipeline generating animated pie chart MP4s from raw JSON data. Uses Node Canvas and FFmpeg.",
-    img: "https://www.google.com/s2/favicons?domain=github.com&sz=128",
+    icon: PieChart,
     tags: ["Node.js", "FFmpeg", "Node-Canvas"],
-    rounded: "rounded-lg",
+    rounded: "rounded-lg bg-purple-500/10 text-purple-500",
     link: null,
     github: "https://github.com/mb-great/pieChartAnimationGenerator"
   }
@@ -87,26 +87,32 @@ export default function CardsCarousel() {
           style={{ width: "fit-content" }}
         >
           {/* Duplicate list for seamless infinite loop */}
-          {[...PROJECTS, ...PROJECTS].map((proj, idx) => (
-            <div 
-              key={idx} 
-              className="w-[350px] md:w-[450px] shrink-0 bg-card border border-border/60 rounded-3xl p-8 hover:bg-accent/30 transition-colors shadow-sm flex flex-col"
-            >
-              <div className="flex items-center gap-4 mb-6">
-                <div className={`relative w-14 h-14 overflow-hidden shadow-sm shrink-0 ${proj.rounded}`}>
-                  <Image 
-                    src={proj.img} 
-                    alt={proj.title} 
-                    fill 
-                    sizes="56px"
-                    className="object-contain" 
-                  />
+          {[...PROJECTS, ...PROJECTS].map((proj, idx) => {
+            const Icon = proj.icon;
+            return (
+              <div 
+                key={idx} 
+                className="w-[350px] md:w-[450px] shrink-0 bg-card border border-border/60 rounded-3xl p-8 hover:bg-accent/30 transition-colors shadow-sm flex flex-col"
+              >
+                <div className="flex items-center gap-4 mb-6">
+                  <div className={`relative w-14 h-14 overflow-hidden shadow-sm shrink-0 flex items-center justify-center ${proj.rounded}`}>
+                    {proj.img ? (
+                      <Image 
+                        src={proj.img} 
+                        alt={proj.title} 
+                        fill 
+                        sizes="56px"
+                        className="object-contain" 
+                      />
+                    ) : Icon ? (
+                      <Icon size={28} />
+                    ) : null}
+                  </div>
+                  <h3 className="text-2xl font-bold text-card-foreground tracking-tight line-clamp-1">{proj.title}</h3>
                 </div>
-                <h3 className="text-2xl font-bold text-card-foreground tracking-tight line-clamp-1">{proj.title}</h3>
-              </div>
-              <p className="text-card-foreground/70 leading-relaxed mb-8 flex-grow">
-                {proj.desc}
-              </p>
+                <p className="text-card-foreground/70 leading-relaxed mb-8 flex-grow">
+                  {proj.desc}
+                </p>
               
               <div className="flex flex-col gap-6 mt-auto">
                 <div className="flex flex-wrap gap-2">
@@ -136,7 +142,8 @@ export default function CardsCarousel() {
                 </div>
               </div>
             </div>
-          ))}
+            );
+          })}
         </motion.div>
       </div>
 
