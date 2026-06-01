@@ -58,6 +58,14 @@ body {
 
 a {
     color: inherit;
+    text-decoration: underline;
+}
+
+/* Nav + button links: no underline (only content links get underlined) */
+.nav__logo,
+.nav__link,
+.btn,
+.contact__link {
     text-decoration: none;
 }
 
