@@ -4,8 +4,8 @@ import { motion } from "framer-motion";
 
 const CAREER_DATA = [
   {
-    role: "Full-Stack Engineer - Consulting & Contract Work",
-    company: "Freelance",
+    role: "Full-Stack Engineer",
+    company: "Independent (Contract)",
     date: "Jul 2025 - Present",
     desc: "Shipping production systems for SaaS, Real Estate, and E-commerce clients.",
     bullets: [
@@ -15,25 +15,24 @@ const CAREER_DATA = [
     ]
   },
   {
-    role: "Software Engineer",
+    role: "Backend Engineer",
     company: "Pintude",
-    date: "Apr 2025 - Jun 2025",
-    desc: "Built scalable UI components and state management for a data-heavy application.",
+    date: "Jul 2024 – Jul 2025",
+    desc: "Solely owned two microservices at a funded startup — media generation + news crawler.",
     bullets: [
-      "Reduced rendering delays by 35% using React functional components and hooks.",
-      "Integrated Redux for global state, ensuring consistent data flow.",
-      "Converted high-fidelity Figma mockups into responsive, accessible code."
+      "Built business card generation service with async job queues and retry isolation across service boundaries.",
+      "Cron-driven news crawler with multilingual classifier across 17 IPTC categories.",
+      "Assets via Node Canvas → AWS S3; deployed on EC2 + PM2 + Nginx, stable for the full year."
     ]
   },
   {
-    role: "Software Engineer Intern",
+    role: "Full-Stack Developer (Contract)",
     company: "Infinite Locus",
-    date: "Jan 2025 - Apr 2025",
-    desc: "Full-stack development utilizing the MERN stack with AWS integrations.",
+    date: "Mar 2024 – Apr 2024",
+    desc: "Shopify storefront features and REST API work in a shared Git codebase.",
     bullets: [
-      "Engineered a scalable RESTful backend utilizing Node.js and Express.",
-      "Integrated AWS S3 for secure, high-availability media storage.",
-      "Implemented JWT authentication to secure endpoints."
+      "Delivered Shopify Liquid layouts and storefront features without breaking live pages.",
+      "REST APIs in Node.js, Express, Sequelize, MySQL; cleaned up slow queries on high-traffic endpoints."
     ]
   }
 ];

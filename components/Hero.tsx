@@ -31,7 +31,7 @@ export default function Hero() {
             Hire Me
           </a>
           <a 
-            href="/Moksh_Resume_v3_fixed.docx" 
+            href="/moksh_resume.pdf" 
             download
             className="w-full sm:w-auto px-8 py-4 bg-accent/50 text-foreground font-medium rounded-2xl hover:bg-accent border border-border/50 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 shadow-sm"
           >
