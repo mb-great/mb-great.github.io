@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Marden Dental — General &amp; Cosmetic Dentistry</title>
+<meta name="description" content="A dental practice that tells you the price before it starts.">
+<script>document.documentElement.classList.add("js")</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Measured from a live modern dental brand with ditto_extract.py, 2026-08-21.
+   LOW CONFIDENCE - only 25 elements rendered before extraction.
+   Source: #FFFFFF ground, #EBEBEB surface, #404040 soft charcoal, #0051C3 blue,
+   system font stack, 13/15/30/60 scale, letter-spacing: normal everywhere.
+   TRANSFORM (ditto Step 4.5):
+     1. Ground shifted - cool off-white #F7F8FA, not plain white.
+     2. Type named - IBM Plex Sans + Plex Mono, the Carbon lineage referenced in
+        design-refs.md. Source had no real typeface at all.
+     3. Tracking now varies with size. The source used `normal` at every size,
+        which is the amateur tell called out in design-refs.md §2.
+   Library check: medspa dark-brass / gym black-acid / salon light-teal /
+   photography warm-olive / dental light-cool-blue. */
+:root{
+  --bg:#F7F8FA; --surface:#FFFFFF; --line:#DFE3E8;
+  --text:#1C1F23; --muted:#565C63; --accent:#0051C3; --accent-soft:#E8EFFB;
+  --sans:"IBM Plex Sans",system-ui,-apple-system,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+  --pad:104px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+img{display:block;max-width:100%;height:auto}
+
+h1{font-weight:600;font-size:clamp(36px,5.6vw,60px);line-height:1.06;letter-spacing:-0.032em}
+h2{font-weight:600;font-size:clamp(24px,3.2vw,34px);line-height:1.15;letter-spacing:-0.022em}
+h3{font-weight:600;font-size:16px;letter-spacing:-0.006em}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent)}
+p{color:var(--muted);max-width:60ch;font-size:15px}
+a{color:inherit}
+
+nav{position:sticky;top:0;z-index:10;background:rgba(247,248,250,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:70px}
+.brand{font-weight:600;font-size:18px;letter-spacing:-0.02em}
+nav ul{display:flex;gap:2px;list-style:none;font-size:14px}
+nav a{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;text-decoration:none;color:var(--muted);transition:color .15s}
+nav a:hover{color:var(--accent)}
+@media(max-width:800px){nav ul{display:none}}
+
+.navtoggle{display:none;width:44px;height:44px;align-items:center;justify-content:center;background:transparent;border:0;cursor:pointer;padding:0;margin-left:auto;margin-right:12px;color:var(--text)}
+.navtoggle span{display:block;width:22px;height:2px;background:currentColor;position:relative;transition:background .15s}
+.navtoggle span::before,.navtoggle span::after{content:"";position:absolute;left:0;width:22px;height:2px;background:currentColor;transition:transform .22s ease}
+.navtoggle span::before{top:-7px}.navtoggle span::after{top:7px}
+.navtoggle[aria-expanded="true"] span{background:transparent}
+.navtoggle[aria-expanded="true"] span::before{transform:translateY(7px) rotate(45deg)}
+.navtoggle[aria-expanded="true"] span::after{transform:translateY(-7px) rotate(-45deg)}
+@media(max-width:800px){
+  .navtoggle{display:flex}
+  nav ul{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;background:var(--bg);border-bottom:1px solid var(--line);padding:8px 24px 16px}
+  nav ul.open{display:flex}
+  nav ul li{width:100%}
+  nav ul a{min-height:52px;padding:0;width:100%}
+}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 26px;border:0;border-radius:0;cursor:pointer;
+  background:var(--accent);color:#fff;text-decoration:none;font-family:var(--sans);font-weight:500;font-size:15px;letter-spacing:-0.006em;transition:opacity .15s}
+.btn:hover{opacity:.9}
+.btn-ghost{background:transparent;color:var(--text);border:1px solid var(--line)}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+
+section{padding:var(--pad) 0}
+section+section{border-top:1px solid var(--line)}
+@media(max-width:800px){:root{--pad:56px}}
+
+.hero{padding-top:76px}
+.hero p{font-size:17px;margin:22px 0 30px}
+.actions{display:flex;gap:12px;flex-wrap:wrap}
+.hero-grid{display:grid;gap:40px;align-items:center}
+@media(min-width:861px){.hero-grid{grid-template-columns:1.1fr .9fr;gap:64px}}
+.hero-img{aspect-ratio:4/5;object-fit:cover;width:100%}
+
+.bar{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:44px}
+@media(min-width:701px){.bar{grid-template-columns:repeat(4,1fr)}}
+.stat{background:var(--surface);padding:26px 22px}
+.stat .n{font-family:var(--mono);font-size:28px;font-weight:500;letter-spacing:-0.02em;color:var(--accent)}
+.stat .l{font-size:13px;color:var(--muted);margin-top:5px}
+
+table{width:100%;border-collapse:collapse;margin-top:36px;font-size:15px;background:var(--surface);border:1px solid var(--line)}
+th,td{text-align:left;padding:15px 18px;border-bottom:1px solid var(--line)}
+th{font-family:var(--mono);font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);font-weight:500}
+td{color:var(--muted)}
+td:first-child{color:var(--text);font-weight:500}
+td:last-child{font-family:var(--mono);color:var(--text);white-space:nowrap}
+.tw{overflow-x:auto}
+
+.gallery{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:44px}
+@media(min-width:701px){.gallery{grid-template-columns:repeat(3,1fr)}}
+.gallery img{aspect-ratio:4/5;object-fit:cover;width:100%}
+
+.two{display:grid;gap:44px}
+@media(min-width:801px){.two{grid-template-columns:1fr 1fr;gap:72px;align-items:start}}
+.note{background:var(--accent-soft);border-left:3px solid var(--accent);padding:22px 24px;font-size:15px;color:var(--text)}
+
+.faq{list-style:none;margin-top:32px}
+.faq li{padding:20px 0;border-bottom:1px solid var(--line)}
+.faq h3{margin-bottom:6px}
+.faq p{font-size:14px}
+
+footer{padding:44px 0;border-top:1px solid var(--line);font-size:14px;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+
+html.js [data-reveal]{opacity:0;transform:translateY(22px)}
+html.js [data-reveal].in{opacity:1;transform:none;transition:opacity .55s cubic-bezier(.22,1,.36,1),transform .55s cubic-bezier(.22,1,.36,1)}
+@media (prefers-reduced-motion:reduce){html.js [data-reveal],html.js [data-reveal].in{opacity:1;transform:none;transition:none}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <span class="brand" data-name>Marden Dental</span>
+    <button class="navtoggle" type="button" aria-expanded="false" aria-controls="navmenu" aria-label="Menu"><span></span></button>
+    <ul id="navmenu">
+      <li><a href="#prices">Prices</a></li>
+      <li><a href="#practice">The practice</a></li>
+      <li><a href="#faq">Questions</a></li>
+    </ul>
+    <a class="btn" href="#book">Book</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <span class="eyebrow" data-reveal="0">General &amp; cosmetic dentistry</span>
+        <h1 data-reveal="60">You will know the price before we start.</h1>
+        <p>Every treatment is quoted in writing after the examination, and nothing begins until you have said yes to it. If a filling turns into something bigger halfway through, we stop and tell you first.</p>
+        <div class="actions" data-reveal="140">
+          <a class="btn" href="#book">Book an examination</a>
+          <a class="btn btn-ghost" href="#prices">See prices</a>
+        </div>
+      </div>
+      <img class="hero-img" src="img/dental/hero.webp" width="1200" height="1500"
+           fetchpriority="high" decoding="async"
+           alt="A dentist going through treatment options with a patient at a desk">
+    </div>
+    <div class="bar" data-reveal="120">
+      <div class="stat"><div class="n">£65</div><div class="l">Examination, including x-rays</div></div>
+      <div class="stat"><div class="n">48h</div><div class="l">Emergency appointments</div></div>
+      <div class="stat"><div class="n">0%</div><div class="l">Finance over 12 months</div></div>
+      <div class="stat"><div class="n">2004</div><div class="l">Same practice, same street</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="prices">
+  <div class="wrap">
+    <span class="eyebrow" data-reveal="0">Prices</span>
+    <h2 data-reveal="60">Published, not quoted on request.</h2>
+    <div class="tw" data-reveal="120">
+    <table>
+      <thead><tr><th>Treatment</th><th>What it covers</th><th>From</th></tr></thead>
+      <tbody>
+        <tr><td>Examination</td><td>Full check, x-rays, written treatment plan</td><td>£65</td></tr>
+        <tr><td>Hygiene appointment</td><td>Scale and polish, 30 minutes</td><td>£75</td></tr>
+        <tr><td>White filling</td><td>Composite, single surface</td><td>£140</td></tr>
+        <tr><td>Root canal</td><td>Front tooth, single visit where possible</td><td>£420</td></tr>
+        <tr><td>Crown</td><td>Porcelain, two visits</td><td>£650</td></tr>
+        <tr><td>Whitening</td><td>Custom trays, take home, six weeks of gel</td><td>£320</td></tr>
+        <tr><td>Emergency appointment</td><td>Same or next day, pain relief first</td><td>£95</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <div class="note" data-reveal="60" style="margin-top:26px">These are starting prices and the written plan after your examination is the real number. We would rather show them here than make you ring up and ask.</div>
+  </div>
+</section>
+
+<section id="practice">
+  <div class="wrap">
+    <span class="eyebrow" data-reveal="0">The practice</span>
+    <h2 data-reveal="60">Four surgeries, one waiting room, no upselling.</h2>
+    <div class="gallery" data-reveal="120">
+      <img src="img/dental/g1.webp" width="1200" height="1500" loading="lazy" decoding="async" alt="A dentist at her desk between appointments">
+      <img src="img/dental/g2.webp" width="1200" height="1500" loading="lazy" decoding="async" alt="Shade matching against a patient's teeth before whitening">
+      <img src="img/dental/g3.webp" width="1200" height="1500" loading="lazy" decoding="async" alt="A hygienist working with a patient in the chair">
+    </div>
+    <div class="two" style="margin-top:56px">
+      <p>Nobody here works on commission, which is the shortest way to explain why we will not sell you veneers you did not ask about. If a tooth can be watched rather than drilled, we will say so and note it for next time.</p>
+      <p>We are open late on Tuesdays and Thursdays and we keep two slots free every morning for emergencies. If you are in pain, ring first thing rather than waiting.</p>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap two">
+    <div>
+      <span class="eyebrow" data-reveal="0">Questions</span>
+      <h2 data-reveal="60">The ones we get asked most.</h2>
+    </div>
+    <div>
+      <ul class="faq" data-reveal="60">
+        <li><h3>Are you taking new patients?</h3><p>Yes, for private treatment. There is no waiting list at the moment.</p></li>
+        <li><h3>I have not been to a dentist in years.</h3><p>That is most of the people who ring us. Nobody will comment on it. We start with an examination and a plan you can spread out.</p></li>
+        <li><h3>Do you offer finance?</h3><p>Interest free over twelve months on anything above £500, subject to a check.</p></li>
+        <li><h3>What if I am nervous?</h3><p>Tell us when you book and we will give you a longer appointment. Sedation is available for longer treatments.</p></li>
+        <li><h3>Do you see children?</h3><p>Yes, from the age of three. Their first visit is a look and a ride in the chair, nothing else.</p></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="book">
+  <div class="wrap two">
+    <div>
+      <span class="eyebrow" data-reveal="0">Book</span>
+      <h2 data-reveal="60">Ring, or send a message.</h2>
+      <p style="margin-top:20px">Examinations are usually available within a week. Emergencies are same or next day.</p>
+      <p style="margin-top:22px;color:var(--text)">14 Marden Street<br>Open Mon-Fri, late Tue and Thu<br><br>hello@example.com</p>
+      <div class="actions" style="margin-top:26px"><a class="btn" href="#book">Request an appointment</a></div>
+    </div>
+    <div>
+      <div class="note">In pain right now? Ring before 9am and we will fit you in the same day. Do not wait for the swelling to go down on its own.</div>
+    </div>
+  </div>
+</section>
+
+<footer class="wrap">
+  <span data-name>Marden Dental</span>
+  <span>14 Marden Street &middot; hello@example.com</span>
+</footer>
+
+<script>
+(function(){
+  var t=document.querySelector('.navtoggle'), m=document.querySelector('nav ul');
+  if(t&&m){
+    function set(o){ t.setAttribute('aria-expanded',o?'true':'false'); m.classList.toggle('open',o); }
+    t.addEventListener('click',function(){ set(t.getAttribute('aria-expanded')!=='true'); });
+    m.addEventListener('click',function(e){ if(e.target.tagName==='A') set(false); });
+    document.addEventListener('keydown',function(e){ if(e.key==='Escape') set(false); });
+  }
+})();
+(function(){
+  var els=document.querySelectorAll('[data-reveal]');
+  if(!('IntersectionObserver' in window)){ els.forEach(function(e){e.classList.add('in');}); return; }
+  var io=new IntersectionObserver(function(en){ en.forEach(function(x){
+    if(!x.isIntersecting) return;
+    x.target.style.transitionDelay=(x.target.dataset.reveal||0)+'ms';
+    x.target.classList.add('in'); io.unobserve(x.target);
+  });},{rootMargin:'0px 0px -8% 0px',threshold:0.08});
+  els.forEach(function(e){io.observe(e);});
+})();
+(function(){
+  var n=new URLSearchParams(location.search).get('name');
+  if(!n) return;
+  document.querySelectorAll('[data-name]').forEach(function(el){ el.textContent=n; });
+  document.title=n+' — Dentistry';
+})();
+</script>
+</body>
+</html>
