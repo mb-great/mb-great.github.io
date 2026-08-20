@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FORGE ROOM — Strength &amp; Conditioning</title>
+<meta name="description" content="Small-group strength and conditioning. Coached, capped at twelve.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@125,700;125,900&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* Tokens measured from a live competitor with ditto_extract.py, 2026-08-21.
+   Source palette: #000 ground, #FFF text, #C1FF72 accent, Courier Prime body.
+   Deviation: muted text raised from #555 to #9A9A9A. #555 on #000 is ~3.0:1
+   and fails WCAG AA for body copy. This is the "or better" part. */
+:root{
+  --bg:#000000; --surface:#0B0B0B; --text:#FFFFFF; --muted:#9A9A9A;
+  --accent:#C1FF72; --border:#242424;
+  --display:"Archivo",Impact,sans-serif;
+  --body:"Courier Prime","Courier New",monospace;
+  --s:8px; --pad:112px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--body);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1100px;margin:0 auto;padding:0 24px}
+
+h1{font-family:var(--display);font-weight:900;font-size:clamp(46px,10vw,104px);line-height:.92;letter-spacing:-0.03em;text-transform:uppercase}
+h2{font-family:var(--display);font-weight:700;font-size:clamp(28px,4.5vw,44px);line-height:1;letter-spacing:-0.015em;text-transform:uppercase}
+h3{font-family:var(--display);font-weight:700;font-size:20px;letter-spacing:0.005em;text-transform:uppercase}
+.eyebrow{font-size:13px;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent)}
+p{color:var(--muted);max-width:58ch;font-size:15px}
+a{color:inherit}
+
+nav{position:sticky;top:0;z-index:10;background:rgba(0,0,0,.9);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:72px}
+.brand{font-family:var(--display);font-weight:900;font-size:21px;letter-spacing:-0.01em;text-transform:uppercase}
+nav ul{display:flex;gap:4px;list-style:none;font-size:13px;letter-spacing:.06em;text-transform:uppercase}
+nav a{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;text-decoration:none;color:var(--muted);transition:color .15s}
+nav a:hover{color:var(--accent)}
+@media(max-width:800px){nav ul{display:none}}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 32px;border:0;cursor:pointer;
+  background:var(--accent);color:#000;text-decoration:none;font-family:var(--display);font-weight:700;font-size:15px;
+  letter-spacing:.04em;text-transform:uppercase;transition:transform .12s}
+.btn:hover{transform:translateY(-2px)}
+.btn-ghost{background:transparent;color:var(--text);border:1px solid var(--border)}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+
+section{padding:var(--pad) 0;border-bottom:1px solid var(--border)}
+@media(max-width:800px){:root{--pad:64px}}
+
+.hero{padding-top:96px}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero p{font-size:17px;margin:28px 0 36px}
+.actions{display:flex;gap:12px;flex-wrap:wrap}
+
+.grid{display:grid;gap:1px;background:var(--border);border:1px solid var(--border);margin-top:48px}
+@media(min-width:801px){.grid{grid-template-columns:repeat(3,1fr)}}
+.cell{background:var(--bg);padding:36px 28px}
+.cell h3{margin-bottom:10px}
+.cell .len{color:var(--accent);font-size:13px;letter-spacing:.08em;text-transform:uppercase;display:block;margin-bottom:14px}
+
+.prices{display:grid;gap:1px;background:var(--border);border:1px solid var(--border);margin-top:48px}
+@media(min-width:801px){.prices{grid-template-columns:repeat(3,1fr)}}
+.plan{background:var(--bg);padding:40px 28px;display:flex;flex-direction:column}
+.plan.mark{background:var(--surface)}
+.plan .amt{font-family:var(--display);font-weight:900;font-size:52px;line-height:1;margin:16px 0 6px}
+.plan .per{color:var(--muted);font-size:13px;text-transform:uppercase;letter-spacing:.08em}
+.plan ul{list-style:none;margin:24px 0 32px;font-size:14px;color:var(--muted)}
+.plan li{padding:8px 0;border-bottom:1px solid var(--border)}
+.plan .btn{margin-top:auto}
+
+table{width:100%;border-collapse:collapse;margin-top:40px;font-size:14px}
+th,td{text-align:left;padding:16px 12px;border-bottom:1px solid var(--border)}
+th{font-family:var(--display);font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+td{color:var(--muted)}
+td:first-child{color:var(--text)}
+.tw{overflow-x:auto}
+
+.cta{text-align:center;border-bottom:0}
+.cta p{margin:20px auto 32px}
+
+footer{padding:48px 0;font-size:13px;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;letter-spacing:.04em}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <span class="brand" data-name>Forge Room</span>
+    <ul>
+      <li><a href="#classes">Classes</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#timetable">Timetable</a></li>
+    </ul>
+    <button class="btn" type="button">Free trial</button>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Small group &middot; Coached &middot; Capped at 12</span>
+    <h1>Twelve people.<br><em>One coach.</em><br>No mirrors.</h1>
+    <p>Strength and conditioning in small groups, programmed in six-week blocks. Everyone gets their numbers written down and reviewed. If you have never touched a barbell we will start you at the bar and that is completely normal here.</p>
+    <div class="actions">
+      <button class="btn" type="button">Book a free trial</button>
+      <a class="btn btn-ghost" href="#pricing">See pricing</a>
+    </div>
+  </div>
+</section>
+
+<section id="classes">
+  <div class="wrap">
+    <span class="eyebrow">Classes</span>
+    <h2>Four things, done properly</h2>
+    <div class="grid">
+      <div class="cell">
+        <h3>Strength</h3><span class="len">60 min</span>
+        <p>Squat, press, hinge, pull. Linear progression for the first twelve weeks, then blocks. You will keep a log and we will read it.</p>
+      </div>
+      <div class="cell">
+        <h3>Conditioning</h3><span class="len">45 min</span>
+        <p>Intervals on bikes, rowers and sleds. Hard, short, and scaled to what you actually did last week rather than a leaderboard.</p>
+      </div>
+      <div class="cell">
+        <h3>Barbell club</h3><span class="len">75 min</span>
+        <p>Snatch and clean and jerk. Technical, slow, and frankly frustrating for the first two months. Worth it after that.</p>
+      </div>
+      <div class="cell">
+        <h3>Open gym</h3><span class="len">Anytime</span>
+        <p>Full floor access with a coach present. Follow your own programme or ours. No booking needed.</p>
+      </div>
+      <div class="cell">
+        <h3>Intro session</h3><span class="len">30 min &middot; Free</span>
+        <p>One-to-one. We look at how you move, talk about what you want, and tell you honestly whether this is the right room for it.</p>
+      </div>
+      <div class="cell">
+        <h3>What we don't do</h3><span class="len">&mdash;</span>
+        <p>No classes over twelve people. No unqualified coaches on the floor. No contracts longer than a month.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="wrap">
+    <span class="eyebrow">Pricing</span>
+    <h2>Monthly. Cancel anytime.</h2>
+    <div class="prices">
+      <div class="plan">
+        <h3>Two a week</h3>
+        <div class="amt">$89</div><span class="per">per month</span>
+        <ul><li>8 classes a month</li><li>Open gym included</li><li>Free intro session</li></ul>
+        <button class="btn btn-ghost" type="button">Choose</button>
+      </div>
+      <div class="plan mark">
+        <h3>Unlimited</h3>
+        <div class="amt">$139</div><span class="per">per month</span>
+        <ul><li>Every class</li><li>Open gym included</li><li>Programme review each block</li></ul>
+        <button class="btn" type="button">Choose</button>
+      </div>
+      <div class="plan">
+        <h3>Drop in</h3>
+        <div class="amt">$22</div><span class="per">per class</span>
+        <ul><li>Single class</li><li>No commitment</li><li>Book on the day</li></ul>
+        <button class="btn btn-ghost" type="button">Choose</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="timetable">
+  <div class="wrap">
+    <span class="eyebrow">Timetable</span>
+    <h2>This week</h2>
+    <div class="tw">
+    <table>
+      <thead><tr><th>Time</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr></thead>
+      <tbody>
+        <tr><td>06:15</td><td>Strength</td><td>Conditioning</td><td>Strength</td><td>Conditioning</td><td>Strength</td><td>&mdash;</td></tr>
+        <tr><td>09:30</td><td>Open gym</td><td>Open gym</td><td>Open gym</td><td>Open gym</td><td>Open gym</td><td>Conditioning</td></tr>
+        <tr><td>12:15</td><td>Conditioning</td><td>&mdash;</td><td>Conditioning</td><td>&mdash;</td><td>Conditioning</td><td>Barbell club</td></tr>
+        <tr><td>17:45</td><td>Strength</td><td>Barbell club</td><td>Strength</td><td>Barbell club</td><td>Strength</td><td>&mdash;</td></tr>
+        <tr><td>19:00</td><td>Barbell club</td><td>Conditioning</td><td>Barbell club</td><td>Conditioning</td><td>Open gym</td><td>&mdash;</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <h2>First session is free</h2>
+    <p>Thirty minutes, one to one. Bring trainers, that is it.</p>
+    <button class="btn" type="button">Book a free trial</button>
+  </div>
+</section>
+
+<footer class="wrap">
+  <span data-name>Forge Room</span>
+  <span>Unit 6, Halden Works &middot; hello@example.com</span>
+</footer>
+
+<script>
+(function(){
+  var n = new URLSearchParams(location.search).get('name');
+  if(!n) return;
+  document.querySelectorAll('[data-name]').forEach(function(el){ el.textContent = n; });
+  document.title = n + ' — Strength & Conditioning';
+})();
+</script>
+</body>
+</html>

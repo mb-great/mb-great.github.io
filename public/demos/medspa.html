@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ardenne Aesthetics — Injectables & Skin</title>
+<meta name="description" content="A small aesthetics studio. Injectables, skin, and laser, booked one at a time.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* T2 Dark Luxe — locked theme. refs/THEMES.md */
+:root{
+  --bg:#0E0E10; --surface:#17171A; --text:#F2F0EC; --muted:#8E8A84;
+  --accent:#C4A56A; --border:#26262B;
+  --display:"Cormorant Garamond",Georgia,serif;
+  --body:"Inter",system-ui,-apple-system,sans-serif;
+  --s:8px; --pad:120px; --radius:2px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--body);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+
+/* tracking varies with size — Apple HIG principle, design-refs.md §2 */
+h1{font-family:var(--display);font-weight:300;font-size:clamp(44px,8vw,86px);line-height:1.04;letter-spacing:-0.02em}
+h2{font-family:var(--display);font-weight:300;font-size:clamp(30px,4.5vw,46px);line-height:1.15;letter-spacing:-0.01em}
+h3{font-family:var(--body);font-weight:500;font-size:17px;letter-spacing:0.01em}
+.eyebrow{font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent)}
+p{color:var(--muted);max-width:60ch}
+a{color:inherit}
+
+nav{position:sticky;top:0;z-index:10;background:rgba(14,14,16,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:72px}
+.brand{font-family:var(--display);font-size:22px;letter-spacing:.01em}
+nav ul{display:flex;gap:8px;list-style:none;font-size:14px}
+nav a{display:inline-flex;align-items:center;min-height:44px;padding:0 12px;text-decoration:none;color:var(--muted);transition:color .2s}
+nav a:hover{color:var(--text)}
+@media(max-width:720px){nav ul{display:none}}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 28px;border-radius:var(--radius);
+  background:var(--accent);color:#14100A;text-decoration:none;font-weight:500;font-size:15px;transition:opacity .2s}
+.btn:hover{opacity:.88}
+.btn-ghost{background:transparent;color:var(--text);border:1px solid var(--border)}
+
+section{padding:var(--pad) 0;border-bottom:1px solid var(--border)}
+@media(max-width:720px){section{padding:64px 0}:root{--pad:64px}}
+
+.hero{padding-top:112px}
+.hero p{font-size:19px;margin:32px 0 40px}
+.hero .actions{display:flex;gap:16px;flex-wrap:wrap}
+
+.grid{display:grid;gap:1px;background:var(--border);border:1px solid var(--border);margin-top:56px}
+@media(min-width:721px){.grid{grid-template-columns:repeat(3,1fr)}}
+.cell{background:var(--bg);padding:40px 32px}
+.cell h3{margin-bottom:12px}
+.cell p{font-size:15px}
+.cell .price{display:block;margin-top:20px;color:var(--accent);font-family:var(--display);font-size:26px}
+
+.two{display:grid;gap:56px}
+@media(min-width:721px){.two{grid-template-columns:1fr 1fr;gap:80px;align-items:start}}
+.note{border-left:1px solid var(--accent);padding-left:24px;font-family:var(--display);font-size:22px;line-height:1.5;color:var(--text)}
+
+.hours{list-style:none;font-size:15px;color:var(--muted)}
+.hours li{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--border);max-width:380px}
+
+form{display:grid;gap:16px;max-width:440px;margin-top:32px}
+input,select,textarea{width:100%;min-height:48px;padding:12px 14px;background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--radius);color:var(--text);font-family:var(--body);font-size:15px}
+textarea{min-height:110px;resize:vertical}
+input::placeholder,textarea::placeholder{color:#5F5A55}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent)}
+label{font-size:13px;color:var(--muted)}
+
+footer{padding:56px 0;font-size:14px;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <span class="brand" data-name>Ardenne Aesthetics</span>
+    <ul>
+      <li><a href="#treatments">Treatments</a></li>
+      <li><a href="#studio">The studio</a></li>
+      <li><a href="#visit">Visit</a></li>
+    </ul>
+    <a class="btn" href="#visit">Book</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Injectables &middot; Skin &middot; Laser</span>
+    <h1>Results that<br>nobody can place.</h1>
+    <p>A small studio with one treatment room. You get the same practitioner every visit, and enough time booked that nothing is rushed. We would rather do less and have it look like nothing was done at all.</p>
+    <div class="actions">
+      <a class="btn" href="#visit">Book a consultation</a>
+      <a class="btn btn-ghost" href="#treatments">See treatments</a>
+    </div>
+  </div>
+</section>
+
+<section id="treatments">
+  <div class="wrap">
+    <span class="eyebrow">Treatments</span>
+    <h2>What we do, and what we don't.</h2>
+    <div class="grid">
+      <div class="cell">
+        <h3>Wrinkle relaxers</h3>
+        <p>Forehead, glabella, crow's feet. Conservative dosing. You will still be able to make faces.</p>
+        <span class="price">from $290</span>
+      </div>
+      <div class="cell">
+        <h3>Dermal filler</h3>
+        <p>Lips, cheeks, tear trough, jawline. One syringe at a time, reviewed at two weeks before anything else is added.</p>
+        <span class="price">from $650</span>
+      </div>
+      <div class="cell">
+        <h3>Skin &amp; laser</h3>
+        <p>Microneedling, chemical peels, IPL for pigment and redness. Course of three, spaced four weeks.</p>
+        <span class="price">from $240</span>
+      </div>
+    </div>
+    <p style="margin-top:32px">We don't do threads, we don't do fat dissolving, and we will tell you when the answer is a dermatologist rather than us.</p>
+  </div>
+</section>
+
+<section id="studio">
+  <div class="wrap two">
+    <div>
+      <span class="eyebrow">The studio</span>
+      <h2>One room, one practitioner.</h2>
+      <p style="margin-top:24px">Most places run four rooms and a rotating team. We run one. It means fewer appointments in a day and it means the person who assessed your face is the person holding the needle.</p>
+      <p style="margin-top:16px">First visits are 45 minutes and half of that is talking. If we don't think a treatment will do what you're hoping, we say so before you've paid for it.</p>
+    </div>
+    <div>
+      <div class="note">"We'd rather turn something down than do it badly and have you living with it for nine months."</div>
+      <ul class="hours" style="margin-top:40px">
+        <li><span>Tuesday &ndash; Thursday</span><span>10 &ndash; 6</span></li>
+        <li><span>Friday</span><span>10 &ndash; 4</span></li>
+        <li><span>Saturday</span><span>By appointment</span></li>
+        <li><span>Sunday &ndash; Monday</span><span>Closed</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="visit">
+  <div class="wrap two">
+    <div>
+      <span class="eyebrow">Visit</span>
+      <h2>Book a consultation.</h2>
+      <p style="margin-top:24px">Consultations are $50 and come off the treatment if you go ahead. Tell us roughly what you're thinking about and we'll come back within a day.</p>
+      <p style="margin-top:24px;color:var(--text)">Studio 4, 118 Marlowe Street<br>Scottsdale, AZ<br><br>hello@example.com</p>
+    </div>
+    <div>
+      <form onsubmit="event.preventDefault();this.innerHTML='<p style=&quot;color:var(--accent);font-family:var(--display);font-size:24px&quot;>Thanks. We&apos;ll be in touch within a day.</p>'">
+        <div><label for="n">Name</label><input id="n" required placeholder="Your name"></div>
+        <div><label for="e">Email</label><input id="e" type="email" required placeholder="you@email.com"></div>
+        <div><label for="t">Interested in</label>
+          <select id="t">
+            <option>Not sure yet</option>
+            <option>Wrinkle relaxers</option>
+            <option>Dermal filler</option>
+            <option>Skin &amp; laser</option>
+          </select>
+        </div>
+        <div><label for="m">Anything else</label><textarea id="m" placeholder="Optional"></textarea></div>
+        <button class="btn" type="submit">Request consultation</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer class="wrap">
+  <span data-name>Ardenne Aesthetics</span>
+  <span>Scottsdale, AZ &middot; hello@example.com</span>
+</footer>
+
+<script>
+// Name swap: ?name=Bloom+Aesthetics
+(function(){
+  var n = new URLSearchParams(location.search).get('name');
+  if(!n) return;
+  document.querySelectorAll('[data-name]').forEach(function(el){ el.textContent = n; });
+  document.title = n + ' — Injectables & Skin';
+})();
+</script>
+</body>
+</html>
