@@ -4,6 +4,7 @@
 <script>document.documentElement.classList.add("js")</script>
 <meta charset="utf-8">
 <meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ardenne Aesthetics — Injectables & Skin</title>
 <meta name="description" content="A small aesthetics studio. Injectables, skin, and laser, booked one at a time.">
@@ -74,6 +75,14 @@ input::placeholder,textarea::placeholder{color:#5F5A55}
 input:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent)}
 label{font-size:13px;color:var(--muted)}
 
+img{display:block;max-width:100%;height:auto}
+.hero-grid{display:grid;gap:40px;align-items:center}
+@media(min-width:861px){.hero-grid{grid-template-columns:1.05fr .95fr;gap:64px}}
+.hero-img{aspect-ratio:4/5;object-fit:cover;width:100%}
+.gallery{display:grid;gap:12px;margin-top:48px}
+@media(min-width:701px){.gallery{grid-template-columns:repeat(3,1fr)}}
+.gallery img{aspect-ratio:4/5;object-fit:cover;width:100%}
+
 footer{padding:56px 0;font-size:14px;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px}
 
 /* Scroll reveal. Pattern from stack-warden/references/frontend/motion.md.
@@ -85,6 +94,25 @@ html.js [data-reveal].in{opacity:1;transform:none;
 @media (prefers-reduced-motion:reduce){
   html.js [data-reveal],html.js [data-reveal].in{opacity:1;transform:none;transition:none}
 }
+
+/* Mobile nav. Links must not simply vanish under the breakpoint. */
+.navtoggle{display:none;width:44px;height:44px;align-items:center;justify-content:center;
+  background:transparent;border:0;cursor:pointer;padding:0;margin-left:auto;margin-right:12px}
+.navtoggle span{display:block;width:22px;height:2px;background:currentColor;position:relative;transition:background .15s}
+.navtoggle span::before,.navtoggle span::after{content:"";position:absolute;left:0;width:22px;height:2px;
+  background:currentColor;transition:transform .22s ease}
+.navtoggle span::before{top:-7px}.navtoggle span::after{top:7px}
+.navtoggle[aria-expanded="true"] span{background:transparent}
+.navtoggle[aria-expanded="true"] span::before{transform:translateY(7px) rotate(45deg)}
+.navtoggle[aria-expanded="true"] span::after{transform:translateY(-7px) rotate(-45deg)}
+@media(max-width:800px){
+  .navtoggle{display:flex}
+  nav ul{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;
+    background:var(--bg);border-bottom:1px solid var(--border,var(--line));padding:8px 24px 16px}
+  nav ul.open{display:flex}
+  nav ul li{width:100%}
+  nav ul a{min-height:52px;padding:0;width:100%}
+}
 </style>
 </head>
 <body>
@@ -92,7 +120,8 @@ html.js [data-reveal].in{opacity:1;transform:none;
 <nav>
   <div class="wrap">
     <span class="brand" data-name>Ardenne Aesthetics</span>
-    <ul>
+    <button class="navtoggle" type="button" aria-expanded="false" aria-controls="navmenu" aria-label="Menu"><span></span></button>
+    <ul id="navmenu">
       <li><a href="#treatments">Treatments</a></li>
       <li><a href="#studio">The studio</a></li>
       <li><a href="#visit">Visit</a></li>
@@ -103,12 +132,19 @@ html.js [data-reveal].in{opacity:1;transform:none;
 
 <section class="hero">
   <div class="wrap">
-    <span class="eyebrow" data-reveal="0">Injectables &middot; Skin &middot; Laser</span>
-    <h1 data-reveal="60">Results that<br>nobody can place.</h1>
-    <p>A small studio with one treatment room. You get the same practitioner every visit, and enough time booked that nothing is rushed. We would rather do less and have it look like nothing was done at all.</p>
-    <div class="actions" data-reveal="140">
-      <a class="btn" href="#visit">Book a consultation</a>
-      <a class="btn btn-ghost" href="#treatments">See treatments</a>
+    <div class="hero-grid">
+      <div>
+        <span class="eyebrow" data-reveal="0">Injectables &middot; Skin &middot; Laser</span>
+        <h1 data-reveal="60">Results that<br>nobody can place.</h1>
+        <p>A small studio with one treatment room. You get the same practitioner every visit, and enough time booked that nothing is rushed. We would rather do less and have it look like nothing was done at all.</p>
+        <div class="actions" data-reveal="140">
+          <a class="btn" href="#visit">Book a consultation</a>
+          <a class="btn btn-ghost" href="#treatments">See treatments</a>
+        </div>
+      </div>
+      <img class="hero-img" src="img/medspa/hero.webp" width="1200" height="1500"
+           fetchpriority="high" decoding="async"
+           alt="A practitioner running a treatment device along a client's cheek">
     </div>
   </div>
 </section>
@@ -158,6 +194,16 @@ html.js [data-reveal].in{opacity:1;transform:none;
   </div>
 </section>
 
+<section>
+  <div class="wrap">
+    <div class="gallery" data-reveal="120">
+      <img src="img/medspa/g1.webp" width="1200" height="1500" loading="lazy" decoding="async" alt="Hands working along the jawline during a facial">
+      <img src="img/medspa/g2.webp" width="1200" height="1500" loading="lazy" decoding="async" alt="The treatment room, chair and equipment ready">
+      <img src="img/medspa/g3.webp" width="1200" height="1500" loading="lazy" decoding="async" alt="Product being applied to the cheek in daylight">
+    </div>
+  </div>
+</section>
+
 <section id="visit">
   <div class="wrap two">
     <div>
@@ -191,6 +237,18 @@ html.js [data-reveal].in{opacity:1;transform:none;
 </footer>
 
 <script>
+
+// Mobile nav toggle. Panel is closed by default and only opens on click,
+// so the links are never simply hidden with no way to reach them.
+(function(){
+  var t=document.querySelector('.navtoggle'), m=document.querySelector('nav ul');
+  if(!t||!m) return;
+  function set(open){ t.setAttribute('aria-expanded', open?'true':'false'); m.classList.toggle('open', open); }
+  t.addEventListener('click', function(){ set(t.getAttribute('aria-expanded')!=='true'); });
+  m.addEventListener('click', function(e){ if(e.target.tagName==='A') set(false); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') set(false); });
+})();
+
 
 // Reveal on scroll. No library. Respects reduced-motion via CSS above.
 (function(){

@@ -4,6 +4,7 @@
 <script>document.documentElement.classList.add("js")</script>
 <meta charset="utf-8">
 <meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>FORGE ROOM — Strength &amp; Conditioning</title>
 <meta name="description" content="Small-group strength and conditioning. Coached, capped at twelve.">
@@ -83,6 +84,14 @@ td:first-child{color:var(--text)}
 .cta{text-align:center;border-bottom:0}
 .cta p{margin:20px auto 32px}
 
+img{display:block;max-width:100%;height:auto}
+.hero-grid{display:grid;gap:40px;align-items:center}
+@media(min-width:861px){.hero-grid{grid-template-columns:1.05fr .95fr;gap:64px}}
+.hero-img{aspect-ratio:4/5;object-fit:cover;width:100%}
+.gallery{display:grid;gap:12px;margin-top:48px}
+@media(min-width:701px){.gallery{grid-template-columns:repeat(3,1fr)}}
+.gallery img{aspect-ratio:4/5;object-fit:cover;width:100%}
+
 footer{padding:48px 0;font-size:13px;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;letter-spacing:.04em}
 
 /* Scroll reveal. Pattern from stack-warden/references/frontend/motion.md.
@@ -94,6 +103,25 @@ html.js [data-reveal].in{opacity:1;transform:none;
 @media (prefers-reduced-motion:reduce){
   html.js [data-reveal],html.js [data-reveal].in{opacity:1;transform:none;transition:none}
 }
+
+/* Mobile nav. Links must not simply vanish under the breakpoint. */
+.navtoggle{display:none;width:44px;height:44px;align-items:center;justify-content:center;
+  background:transparent;border:0;cursor:pointer;padding:0;margin-left:auto;margin-right:12px}
+.navtoggle span{display:block;width:22px;height:2px;background:currentColor;position:relative;transition:background .15s}
+.navtoggle span::before,.navtoggle span::after{content:"";position:absolute;left:0;width:22px;height:2px;
+  background:currentColor;transition:transform .22s ease}
+.navtoggle span::before{top:-7px}.navtoggle span::after{top:7px}
+.navtoggle[aria-expanded="true"] span{background:transparent}
+.navtoggle[aria-expanded="true"] span::before{transform:translateY(7px) rotate(45deg)}
+.navtoggle[aria-expanded="true"] span::after{transform:translateY(-7px) rotate(-45deg)}
+@media(max-width:800px){
+  .navtoggle{display:flex}
+  nav ul{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;
+    background:var(--bg);border-bottom:1px solid var(--border,var(--line));padding:8px 24px 16px}
+  nav ul.open{display:flex}
+  nav ul li{width:100%}
+  nav ul a{min-height:52px;padding:0;width:100%}
+}
 </style>
 </head>
 <body>
@@ -101,7 +129,8 @@ html.js [data-reveal].in{opacity:1;transform:none;
 <nav>
   <div class="wrap">
     <span class="brand" data-name>Forge Room</span>
-    <ul>
+    <button class="navtoggle" type="button" aria-expanded="false" aria-controls="navmenu" aria-label="Menu"><span></span></button>
+    <ul id="navmenu">
       <li><a href="#classes">Classes</a></li>
       <li><a href="#pricing">Pricing</a></li>
       <li><a href="#timetable">Timetable</a></li>
@@ -112,12 +141,19 @@ html.js [data-reveal].in{opacity:1;transform:none;
 
 <section class="hero">
   <div class="wrap">
-    <span class="eyebrow" data-reveal="0">Small group &middot; Coached &middot; Capped at 12</span>
-    <h1 data-reveal="60">Twelve people.<br><em>One coach.</em><br>No mirrors.</h1>
-    <p>Strength and conditioning in small groups, programmed in six-week blocks. Everyone gets their numbers written down and reviewed. If you have never touched a barbell we will start you at the bar and that is completely normal here.</p>
-    <div class="actions" data-reveal="140">
-      <button class="btn" type="button">Book a free trial</button>
-      <a class="btn btn-ghost" href="#pricing">See pricing</a>
+    <div class="hero-grid">
+      <div>
+        <span class="eyebrow" data-reveal="0">Small group &middot; Coached &middot; Capped at 12</span>
+        <h1 data-reveal="60">Twelve people.<br><em>One coach.</em><br>No mirrors.</h1>
+        <p>Strength and conditioning in small groups, programmed in six-week blocks. Everyone gets their numbers written down and reviewed. If you have never touched a barbell we will start you at the bar and that is completely normal here.</p>
+        <div class="actions" data-reveal="140">
+          <button class="btn" type="button">Book a free trial</button>
+          <a class="btn btn-ghost" href="#pricing">See pricing</a>
+        </div>
+      </div>
+      <img class="hero-img" src="img/gym/hero.webp" width="1200" height="1500"
+           fetchpriority="high" decoding="async"
+           alt="Two members sitting on a plyo box in the gym between sets">
     </div>
   </div>
 </section>
@@ -151,6 +187,16 @@ html.js [data-reveal].in{opacity:1;transform:none;
         <h3>What we don't do</h3><span class="len">&mdash;</span>
         <p>No classes over twelve people. No unqualified coaches on the floor. No contracts longer than a month.</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="gallery" data-reveal="120">
+      <img src="img/gym/g1.webp" width="1200" height="1500" loading="lazy" decoding="async" alt="Lifting a dumbbell from the floor, close on the feet and hands">
+      <img src="img/gym/g2.webp" width="1200" height="1500" loading="lazy" decoding="async" alt="Medicine balls racked along the wall">
+      <img src="img/gym/g3.webp" width="1200" height="1500" loading="lazy" decoding="async" alt="Dumbbells racked in a row">
     </div>
   </div>
 </section>
@@ -215,6 +261,18 @@ html.js [data-reveal].in{opacity:1;transform:none;
 </footer>
 
 <script>
+
+// Mobile nav toggle. Panel is closed by default and only opens on click,
+// so the links are never simply hidden with no way to reach them.
+(function(){
+  var t=document.querySelector('.navtoggle'), m=document.querySelector('nav ul');
+  if(!t||!m) return;
+  function set(open){ t.setAttribute('aria-expanded', open?'true':'false'); m.classList.toggle('open', open); }
+  t.addEventListener('click', function(){ set(t.getAttribute('aria-expanded')!=='true'); });
+  m.addEventListener('click', function(e){ if(e.target.tagName==='A') set(false); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') set(false); });
+})();
+
 // Reveal on scroll. No library. Respects reduced-motion via CSS above.
 (function(){
   var els = document.querySelectorAll('[data-reveal]');
