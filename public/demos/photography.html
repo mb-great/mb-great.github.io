@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wren &amp; Ash — Wedding Photography</title>
+<meta name="description" content="Documentary wedding photography. Two photographers, twenty weddings a year.">
+<script>document.documentElement.classList.add("js")</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Questrial&family=EB+Garamond:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
+<style>
+/* Measured from a live wedding-photography site with ditto_extract.py, 2026-08-21.
+   Source: #FFFFFF ground, #F4F2EC secondary, #2B2B27 warm charcoal, #5D634D olive,
+   Questrial + a light italic serif, 80/50/43px display against 12-16px body.
+   TRANSFORM (ditto Step 4.5, two axes minimum):
+     1. Ground inverted - the source's secondary warm off-white becomes the page ground.
+     2. Italic face changed - EB Garamond italic, not the source's face, and not the
+        Cormorant already used on medspa.
+   Library check: medspa dark-brass, gym black-acid, salon light-teal. This is light-warm-olive. */
+:root{
+  --bg:#F4F2EC; --surface:#FFFFFF; --line:#E2DFD5;
+  --text:#2B2B27; --muted:#5F5E56; --accent:#5D634D;
+  --sans:"Questrial",Futura,"Century Gothic",sans-serif;
+  --serif:"EB Garamond",Georgia,serif;
+  --pad:112px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+img{display:block;max-width:100%;height:auto}
+
+h1{font-family:var(--sans);font-weight:400;font-size:clamp(42px,8.5vw,80px);line-height:1.02;letter-spacing:-0.03em}
+h2{font-family:var(--sans);font-weight:400;font-size:clamp(28px,4.2vw,50px);line-height:1.08;letter-spacing:-0.02em}
+h3{font-weight:400;font-size:17px;letter-spacing:0}
+.eyebrow{font-size:12px;letter-spacing:0.22em;text-transform:uppercase;color:var(--accent)}
+.ital{font-family:var(--serif);font-style:italic}
+p{color:var(--muted);max-width:58ch;font-size:15px}
+a{color:inherit}
+
+nav{position:sticky;top:0;z-index:10;background:rgba(244,242,236,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:72px}
+.brand{font-size:18px;letter-spacing:.14em;text-transform:uppercase}
+nav ul{display:flex;gap:2px;list-style:none;font-size:13px}
+nav a{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;text-decoration:none;color:var(--muted);transition:color .15s}
+nav a:hover{color:var(--text)}
+@media(max-width:800px){nav ul{display:none}}
+
+.navtoggle{display:none;width:44px;height:44px;align-items:center;justify-content:center;background:transparent;border:0;cursor:pointer;padding:0;margin-left:auto;margin-right:12px;color:var(--text)}
+.navtoggle span{display:block;width:22px;height:1.5px;background:currentColor;position:relative;transition:background .15s}
+.navtoggle span::before,.navtoggle span::after{content:"";position:absolute;left:0;width:22px;height:1.5px;background:currentColor;transition:transform .22s ease}
+.navtoggle span::before{top:-7px}.navtoggle span::after{top:7px}
+.navtoggle[aria-expanded="true"] span{background:transparent}
+.navtoggle[aria-expanded="true"] span::before{transform:translateY(7px) rotate(45deg)}
+.navtoggle[aria-expanded="true"] span::after{transform:translateY(-7px) rotate(-45deg)}
+@media(max-width:800px){
+  .navtoggle{display:flex}
+  nav ul{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;background:var(--bg);border-bottom:1px solid var(--line);padding:8px 24px 16px}
+  nav ul.open{display:flex}
+  nav ul li{width:100%}
+  nav ul a{min-height:52px;padding:0;width:100%}
+}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:0 30px;border:0;cursor:pointer;
+  background:var(--accent);color:#F4F2EC;text-decoration:none;font-family:var(--sans);font-size:12px;
+  letter-spacing:.18em;text-transform:uppercase;transition:opacity .15s}
+.btn:hover{opacity:.86}
+.btn-ghost{background:transparent;color:var(--text);border:1px solid var(--line)}
+.btn-ghost:hover{border-color:var(--accent)}
+
+section{padding:var(--pad) 0}
+section+section{border-top:1px solid var(--line)}
+@media(max-width:800px){:root{--pad:60px}}
+
+.hero{padding-top:80px;padding-bottom:0}
+.hero p{font-size:17px;margin:26px 0 34px}
+.actions{display:flex;gap:12px;flex-wrap:wrap}
+.hero-img{width:100%;aspect-ratio:16/9;object-fit:cover;margin-top:64px}
+@media(max-width:800px){.hero-img{aspect-ratio:4/5;margin-top:44px}}
+
+.masonry{columns:3;column-gap:14px;margin-top:48px}
+@media(max-width:900px){.masonry{columns:2}}
+@media(max-width:560px){.masonry{columns:1}}
+.masonry img{width:100%;margin-bottom:14px;break-inside:avoid}
+
+.two{display:grid;gap:48px}
+@media(min-width:801px){.two{grid-template-columns:1fr 1fr;gap:80px;align-items:start}}
+.quote{font-family:var(--serif);font-style:italic;font-size:clamp(22px,3vw,32px);line-height:1.4;color:var(--text)}
+
+.steps{list-style:none;margin-top:40px;counter-reset:s}
+.steps li{counter-increment:s;padding:22px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:44px 1fr;gap:18px}
+.steps li::before{content:counter(s,decimal-leading-zero);color:var(--accent);font-size:12px;letter-spacing:.1em;padding-top:4px}
+.steps h3{margin-bottom:5px}
+.steps p{font-size:14px}
+
+.pkg{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:44px}
+@media(min-width:801px){.pkg{grid-template-columns:repeat(3,1fr)}}
+.p1{background:var(--bg);padding:36px 28px;display:flex;flex-direction:column}
+.p1 .amt{font-size:40px;margin:14px 0 4px;letter-spacing:-0.02em}
+.p1 .per{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.p1 ul{list-style:none;margin:22px 0 30px;font-size:14px;color:var(--muted)}
+.p1 li{padding:7px 0;border-bottom:1px solid var(--line)}
+.p1 .btn{margin-top:auto}
+
+footer{padding:52px 0;border-top:1px solid var(--line);font-size:13px;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+
+html.js [data-reveal]{opacity:0;transform:translateY(24px)}
+html.js [data-reveal].in{opacity:1;transform:none;transition:opacity .6s cubic-bezier(.22,1,.36,1),transform .6s cubic-bezier(.22,1,.36,1)}
+@media (prefers-reduced-motion:reduce){html.js [data-reveal],html.js [data-reveal].in{opacity:1;transform:none;transition:none}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <span class="brand" data-name>Wren &amp; Ash</span>
+    <button class="navtoggle" type="button" aria-expanded="false" aria-controls="navmenu" aria-label="Menu"><span></span></button>
+    <ul id="navmenu">
+      <li><a href="#work">Work</a></li>
+      <li><a href="#how">How it works</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+    </ul>
+    <a class="btn" href="#enquire">Enquire</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow" data-reveal="0">Documentary wedding photography</span>
+    <h1 data-reveal="60">We don't ask you<br>to <span class="ital">do that again.</span></h1>
+    <p>Two photographers, twenty weddings a year. We stay out of the way, shoot what actually happens, and hand you a gallery that looks like the day you remember rather than a shoot you sat through.</p>
+    <div class="actions" data-reveal="140">
+      <a class="btn" href="#enquire">Check our date</a>
+      <a class="btn btn-ghost" href="#work">See a full wedding</a>
+    </div>
+    <img class="hero-img" src="img/photography/hero.webp" width="1200" height="1500"
+         fetchpriority="high" decoding="async"
+         alt="A couple walking hand in hand across grass in the late afternoon">
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <span class="eyebrow" data-reveal="0">Work</span>
+    <h2 data-reveal="60">Recent weddings</h2>
+    <div class="masonry" data-reveal="120">
+      <img src="img/photography/g1.webp" width="1200" height="1500" loading="lazy" decoding="async" alt="A couple laughing together in warm afternoon light">
+      <img src="img/photography/g2.webp" width="1200" height="1500" loading="lazy" decoding="async" alt="Two faces close together, backlit by low sun">
+      <img src="img/photography/g3.webp" width="1200" height="1500" loading="lazy" decoding="async" alt="A couple in traditional dress during the ceremony">
+      <img src="img/photography/g4.webp" width="1200" height="1500" loading="lazy" decoding="async" alt="The bride raising her bouquet on a wooden walkway">
+      <img src="img/photography/g5.webp" width="1200" height="1500" loading="lazy" decoding="async" alt="Foreheads together against a bright hazy sky">
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap two">
+    <div>
+      <span class="eyebrow" data-reveal="0">How it works</span>
+      <h2 data-reveal="60">Four steps, no surprises.</h2>
+      <ol class="steps" data-reveal="120">
+        <li><div><h3>Check the date</h3><p>Send the date and the venue. We reply within two days either way.</p></div></li>
+        <li><div><h3>Meet, properly</h3><p>A call or a coffee. If we are not right for your wedding we will say so and point you at someone who is.</p></div></li>
+        <li><div><h3>The day</h3><p>We arrive early, find the light, and stay quiet. Two of us, so nothing gets missed.</p></div></li>
+        <li><div><h3>Your gallery</h3><p>Six weeks, around 600 edited photographs, downloadable at full size. Yours to print anywhere.</p></div></li>
+      </ol>
+    </div>
+    <div>
+      <div class="quote" data-reveal="60">"The best photograph from most weddings is one nobody noticed being taken."</div>
+      <p style="margin-top:28px">We shoot about twenty weddings a year on purpose. It keeps the editing honest and it means we are never running two galleries behind.</p>
+      <p style="margin-top:16px">We travel. Anywhere in the country is included, further afield is just the cost of getting there.</p>
+    </div>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="wrap">
+    <span class="eyebrow" data-reveal="0">Pricing</span>
+    <h2 data-reveal="60">Three collections.</h2>
+    <div class="pkg" data-reveal="120">
+      <div class="p1">
+        <h3>Half day</h3>
+        <div class="amt">$1,800</div><span class="per">Six hours</span>
+        <ul><li>One photographer</li><li>~300 edited photographs</li><li>Online gallery, full-size downloads</li></ul>
+        <a class="btn btn-ghost" href="#enquire">Enquire</a>
+      </div>
+      <div class="p1">
+        <h3>Full day</h3>
+        <div class="amt">$2,900</div><span class="per">Ten hours</span>
+        <ul><li>Two photographers</li><li>~600 edited photographs</li><li>Online gallery, full-size downloads</li><li>Engagement shoot included</li></ul>
+        <a class="btn" href="#enquire">Enquire</a>
+      </div>
+      <div class="p1">
+        <h3>Two days</h3>
+        <div class="amt">$4,200</div><span class="per">Ceremony and the day before</span>
+        <ul><li>Two photographers, both days</li><li>~1,000 edited photographs</li><li>Album, 30 spreads</li><li>Engagement shoot included</li></ul>
+        <a class="btn btn-ghost" href="#enquire">Enquire</a>
+      </div>
+    </div>
+    <p style="margin-top:26px">Travel inside the country is included. We take a 25% deposit to hold a date and the balance is due a month before.</p>
+  </div>
+</section>
+
+<section id="enquire">
+  <div class="wrap two">
+    <div>
+      <span class="eyebrow" data-reveal="0">Enquire</span>
+      <h2 data-reveal="60">Check your date.</h2>
+      <p style="margin-top:22px">Tell us the date, the venue and roughly what you are picturing. We answer every enquiry, including the ones we cannot take.</p>
+      <p style="margin-top:22px;color:var(--text)">hello@example.com<br>Based in the north, working everywhere</p>
+    </div>
+    <div>
+      <div class="actions" data-reveal="60"><a class="btn" href="mailto:hello@example.com">Send an enquiry</a></div>
+      <p style="margin-top:24px" class="ital" >We reply within two days. If you have not heard from us, it went to spam - please try again.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="wrap">
+  <span data-name>Wren &amp; Ash</span>
+  <span>hello@example.com</span>
+</footer>
+
+<script>
+(function(){
+  var t=document.querySelector('.navtoggle'), m=document.querySelector('nav ul');
+  if(t&&m){
+    function set(o){ t.setAttribute('aria-expanded',o?'true':'false'); m.classList.toggle('open',o); }
+    t.addEventListener('click',function(){ set(t.getAttribute('aria-expanded')!=='true'); });
+    m.addEventListener('click',function(e){ if(e.target.tagName==='A') set(false); });
+    document.addEventListener('keydown',function(e){ if(e.key==='Escape') set(false); });
+  }
+})();
+(function(){
+  var els=document.querySelectorAll('[data-reveal]');
+  if(!('IntersectionObserver' in window)){ els.forEach(function(e){e.classList.add('in');}); return; }
+  var io=new IntersectionObserver(function(en){ en.forEach(function(x){
+    if(!x.isIntersecting) return;
+    x.target.style.transitionDelay=(x.target.dataset.reveal||0)+'ms';
+    x.target.classList.add('in'); io.unobserve(x.target);
+  });},{rootMargin:'0px 0px -8% 0px',threshold:0.08});
+  els.forEach(function(e){io.observe(e);});
+})();
+(function(){
+  var n=new URLSearchParams(location.search).get('name');
+  if(!n) return;
+  document.querySelectorAll('[data-name]').forEach(function(el){ el.textContent=n; });
+  document.title=n+' — Wedding Photography';
+})();
+</script>
+</body>
+</html>
