@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+<script>document.documentElement.classList.add("js")</script>
 <meta charset="utf-8">
 <meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -80,7 +81,26 @@ section+section{border-top:1px solid var(--line)}
 
 .quote{font-weight:300;font-size:clamp(20px,2.6vw,27px);line-height:1.5;color:var(--text);border-left:2px solid var(--fill);padding-left:24px}
 
+img{display:block;max-width:100%;height:auto}
+.hero-grid{display:grid;gap:40px;align-items:center}
+@media(min-width:861px){.hero-grid{grid-template-columns:1.05fr .95fr;gap:64px}}
+.hero-img{aspect-ratio:4/5;object-fit:cover;width:100%}
+.gallery{display:grid;gap:12px;margin-top:44px}
+@media(min-width:701px){.gallery{grid-template-columns:repeat(3,1fr)}}
+.gallery img{aspect-ratio:4/5;object-fit:cover;width:100%}
+.who-img{aspect-ratio:1/1;object-fit:cover;width:100%;margin-bottom:18px}
+
 footer{padding:44px 0;border-top:1px solid var(--line);font-size:13.3px;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+
+/* Scroll reveal. Pattern from stack-warden/references/frontend/motion.md.
+   Hidden state is scoped to html.js which JS sets itself, so if the script
+   never runs the page ships visible rather than blank. */
+html.js [data-reveal]{opacity:0;transform:translateY(24px)}
+html.js [data-reveal].in{opacity:1;transform:none;
+  transition:opacity .55s cubic-bezier(.22,1,.36,1),transform .55s cubic-bezier(.22,1,.36,1)}
+@media (prefers-reduced-motion:reduce){
+  html.js [data-reveal],html.js [data-reveal].in{opacity:1;transform:none;transition:none}
+}
 </style>
 </head>
 <body>
@@ -99,21 +119,28 @@ footer{padding:44px 0;border-top:1px solid var(--line);font-size:13.3px;color:va
 
 <section class="hero">
   <div class="wrap">
-    <span class="eyebrow">Cutting &middot; Colour &middot; Since 2016</span>
-    <h1>Four chairs.<br>No conveyor belt.</h1>
-    <p>We book longer appointments than most places do, which means fewer people through the door and nobody being handed off halfway through. You see the same stylist each time unless you ask not to.</p>
-    <div class="actions">
-      <button class="btn" type="button">Book an appointment</button>
-      <a class="btn btn-ghost" href="#services">See services</a>
+    <div class="hero-grid">
+      <div>
+        <span class="eyebrow" data-reveal="0">Cutting &middot; Colour &middot; Since 2016</span>
+        <h1 data-reveal="60">Four chairs.<br>No conveyor belt.</h1>
+        <p>We book longer appointments than most places do, which means fewer people through the door and nobody being handed off halfway through. You see the same stylist each time unless you ask not to.</p>
+        <div class="actions" data-reveal="140">
+          <button class="btn" type="button">Book an appointment</button>
+          <a class="btn btn-ghost" href="#services">See services</a>
+        </div>
+      </div>
+      <img class="hero-img" src="img/salon/hero.webp" width="1200" height="1500"
+           fetchpriority="high" decoding="async"
+           alt="A stylist sectioning a client's hair with a comb at the chair">
     </div>
   </div>
 </section>
 
 <section id="services" class="tint">
   <div class="wrap">
-    <span class="eyebrow">Services</span>
-    <h2>What it costs, before you sit down.</h2>
-    <ul class="list">
+    <span class="eyebrow" data-reveal="0">Services</span>
+    <h2 data-reveal="60">What it costs, before you sit down.</h2>
+    <ul class="list" data-reveal="120">
       <li><span class="n">Cut &amp; finish</span><span class="d">Consultation, wash, cut, blow dry. 60 minutes.</span><span class="p">$85</span></li>
       <li><span class="n">Restyle</span><span class="d">For a real change. 90 minutes, we talk first.</span><span class="p">$120</span></li>
       <li><span class="n">Root tint</span><span class="d">Regrowth only, gloss included.</span><span class="p">$95</span></li>
@@ -128,9 +155,9 @@ footer{padding:44px 0;border-top:1px solid var(--line);font-size:13.3px;color:va
 
 <section id="team">
   <div class="wrap">
-    <span class="eyebrow">The team</span>
-    <h2>Three stylists, one apprentice.</h2>
-    <div class="people">
+    <span class="eyebrow" data-reveal="0">The team</span>
+    <h2 data-reveal="60">Three stylists, one apprentice.</h2>
+    <div class="people" data-reveal="120">
       <div class="who">
         <h3>Nadia</h3><span class="role">Owner &middot; Colour</span>
         <p>Fourteen years, most of it in colour correction. Will tell you honestly when going lighter is a two-appointment job rather than one.</p>
@@ -144,8 +171,17 @@ footer{padding:44px 0;border-top:1px solid var(--line);font-size:13.3px;color:va
         <p>Curly and textured hair specialist. Cuts dry, which takes longer and is worth it.</p>
       </div>
     </div>
+    <div class="gallery" data-reveal="120">
+      <img src="img/salon/g1.webp" width="1200" height="1500" loading="lazy" decoding="async"
+           alt="Close-up of scissors point-cutting the ends of long hair">
+      <img src="img/salon/g2.webp" width="1200" height="1500" loading="lazy" decoding="async"
+           alt="Hair, clips and shears laid out on a white surface">
+      <img src="img/salon/g3.webp" width="1200" height="1500" loading="lazy" decoding="async"
+           alt="Colour being applied to a client reclined at the basin">
+    </div>
+
     <div class="two" style="margin-top:56px">
-      <div class="quote">"If a colour is going to damage your hair to get there, we will say so and offer you the version that will not."</div>
+      <div class="quote" data-reveal="120">"If a colour is going to damage your hair to get there, we will say so and offer you the version that will not."</div>
       <div>
         <p>We are a small team and we keep it that way on purpose. Everyone here has been cutting for at least five years, and the apprentice does not touch your hair until she is ready.</p>
       </div>
@@ -156,8 +192,8 @@ footer{padding:44px 0;border-top:1px solid var(--line);font-size:13.3px;color:va
 <section id="visit" class="tint">
   <div class="wrap two">
     <div>
-      <span class="eyebrow">Visit</span>
-      <h2>Book in.</h2>
+      <span class="eyebrow" data-reveal="0">Visit</span>
+      <h2 data-reveal="60">Book in.</h2>
       <p style="margin-top:20px">Call, message, or book online. New colour clients need a consultation first, and it is free.</p>
       <p style="margin-top:22px;color:var(--text)">14 Halden Row<br>Ground floor, blue door<br><br>hello@example.com</p>
       <div class="actions" style="margin-top:28px">
@@ -165,7 +201,7 @@ footer{padding:44px 0;border-top:1px solid var(--line);font-size:13.3px;color:va
       </div>
     </div>
     <div>
-      <span class="eyebrow">Hours</span>
+      <span class="eyebrow" data-reveal="0">Hours</span>
       <ul class="hours">
         <li><span>Tuesday</span><span>10 &ndash; 6</span></li>
         <li><span>Wednesday</span><span>10 &ndash; 8</span></li>
@@ -184,6 +220,25 @@ footer{padding:44px 0;border-top:1px solid var(--line);font-size:13.3px;color:va
 </footer>
 
 <script>
+// Reveal on scroll. No library. Respects reduced-motion via CSS above.
+(function(){
+  var els = document.querySelectorAll('[data-reveal]');
+  if(!('IntersectionObserver' in window)){
+    els.forEach(function(e){ e.classList.add('in'); });
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(!en.isIntersecting) return;
+      var el = en.target;
+      el.style.transitionDelay = (el.dataset.reveal || 0) + 'ms';
+      el.classList.add('in');
+      io.unobserve(el);
+    });
+  }, {rootMargin:'0px 0px -8% 0px', threshold:0.08});
+  els.forEach(function(e){ io.observe(e); });
+})();
+
 (function(){
   var n = new URLSearchParams(location.search).get('name');
   if(!n) return;

@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+<script>document.documentElement.classList.add("js")</script>
 <meta charset="utf-8">
 <meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -74,6 +75,16 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent)}
 label{font-size:13px;color:var(--muted)}
 
 footer{padding:56px 0;font-size:14px;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px}
+
+/* Scroll reveal. Pattern from stack-warden/references/frontend/motion.md.
+   Hidden state is scoped to html.js which JS sets itself, so if the script
+   never runs the page ships visible rather than blank. */
+html.js [data-reveal]{opacity:0;transform:translateY(24px)}
+html.js [data-reveal].in{opacity:1;transform:none;
+  transition:opacity .55s cubic-bezier(.22,1,.36,1),transform .55s cubic-bezier(.22,1,.36,1)}
+@media (prefers-reduced-motion:reduce){
+  html.js [data-reveal],html.js [data-reveal].in{opacity:1;transform:none;transition:none}
+}
 </style>
 </head>
 <body>
@@ -92,10 +103,10 @@ footer{padding:56px 0;font-size:14px;color:var(--muted);display:flex;justify-con
 
 <section class="hero">
   <div class="wrap">
-    <span class="eyebrow">Injectables &middot; Skin &middot; Laser</span>
-    <h1>Results that<br>nobody can place.</h1>
+    <span class="eyebrow" data-reveal="0">Injectables &middot; Skin &middot; Laser</span>
+    <h1 data-reveal="60">Results that<br>nobody can place.</h1>
     <p>A small studio with one treatment room. You get the same practitioner every visit, and enough time booked that nothing is rushed. We would rather do less and have it look like nothing was done at all.</p>
-    <div class="actions">
+    <div class="actions" data-reveal="140">
       <a class="btn" href="#visit">Book a consultation</a>
       <a class="btn btn-ghost" href="#treatments">See treatments</a>
     </div>
@@ -104,9 +115,9 @@ footer{padding:56px 0;font-size:14px;color:var(--muted);display:flex;justify-con
 
 <section id="treatments">
   <div class="wrap">
-    <span class="eyebrow">Treatments</span>
-    <h2>What we do, and what we don't.</h2>
-    <div class="grid">
+    <span class="eyebrow" data-reveal="0">Treatments</span>
+    <h2 data-reveal="60">What we do, and what we don't.</h2>
+    <div class="grid" data-reveal="120">
       <div class="cell">
         <h3>Wrinkle relaxers</h3>
         <p>Forehead, glabella, crow's feet. Conservative dosing. You will still be able to make faces.</p>
@@ -130,13 +141,13 @@ footer{padding:56px 0;font-size:14px;color:var(--muted);display:flex;justify-con
 <section id="studio">
   <div class="wrap two">
     <div>
-      <span class="eyebrow">The studio</span>
-      <h2>One room, one practitioner.</h2>
+      <span class="eyebrow" data-reveal="0">The studio</span>
+      <h2 data-reveal="60">One room, one practitioner.</h2>
       <p style="margin-top:24px">Most places run four rooms and a rotating team. We run one. It means fewer appointments in a day and it means the person who assessed your face is the person holding the needle.</p>
       <p style="margin-top:16px">First visits are 45 minutes and half of that is talking. If we don't think a treatment will do what you're hoping, we say so before you've paid for it.</p>
     </div>
     <div>
-      <div class="note">"We'd rather turn something down than do it badly and have you living with it for nine months."</div>
+      <div class="note" data-reveal="120">"We'd rather turn something down than do it badly and have you living with it for nine months."</div>
       <ul class="hours" style="margin-top:40px">
         <li><span>Tuesday &ndash; Thursday</span><span>10 &ndash; 6</span></li>
         <li><span>Friday</span><span>10 &ndash; 4</span></li>
@@ -150,8 +161,8 @@ footer{padding:56px 0;font-size:14px;color:var(--muted);display:flex;justify-con
 <section id="visit">
   <div class="wrap two">
     <div>
-      <span class="eyebrow">Visit</span>
-      <h2>Book a consultation.</h2>
+      <span class="eyebrow" data-reveal="0">Visit</span>
+      <h2 data-reveal="60">Book a consultation.</h2>
       <p style="margin-top:24px">Consultations are $50 and come off the treatment if you go ahead. Tell us roughly what you're thinking about and we'll come back within a day.</p>
       <p style="margin-top:24px;color:var(--text)">Studio 4, 118 Marlowe Street<br>Scottsdale, AZ<br><br>hello@example.com</p>
     </div>
@@ -180,6 +191,26 @@ footer{padding:56px 0;font-size:14px;color:var(--muted);display:flex;justify-con
 </footer>
 
 <script>
+
+// Reveal on scroll. No library. Respects reduced-motion via CSS above.
+(function(){
+  var els = document.querySelectorAll('[data-reveal]');
+  if(!('IntersectionObserver' in window)){
+    els.forEach(function(e){ e.classList.add('in'); });
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(!en.isIntersecting) return;
+      var el = en.target;
+      el.style.transitionDelay = (el.dataset.reveal || 0) + 'ms';
+      el.classList.add('in');
+      io.unobserve(el);
+    });
+  }, {rootMargin:'0px 0px -8% 0px', threshold:0.08});
+  els.forEach(function(e){ io.observe(e); });
+})();
+
 // Name swap: ?name=Bloom+Aesthetics
 (function(){
   var n = new URLSearchParams(location.search).get('name');
