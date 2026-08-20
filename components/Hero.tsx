@@ -24,7 +24,7 @@ export default function Hero() {
 
         <div className="flex flex-col sm:flex-row gap-4 items-center">
           <a 
-            href="mailto:mokshbudhiraja03@gmail.com" 
+            href="mailto:mb@mokshbudhiraja.com" 
             className="w-full sm:w-auto px-8 py-4 bg-foreground text-background font-medium rounded-2xl hover:scale-[1.02] active:scale-[0.98] transition-transform flex items-center justify-center gap-2 shadow-sm"
           >
             <Mail size={18} />

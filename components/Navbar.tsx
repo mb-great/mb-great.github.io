@@ -15,7 +15,7 @@ export default function Navbar() {
         <div className="flex gap-6 text-sm font-medium">
           <a href="#proof" className="text-foreground/70 hover:text-foreground transition-colors">Proof</a>
           <a href="#career" className="text-foreground/70 hover:text-foreground transition-colors">Career</a>
-          <a href="mailto:mokshbudhiraja03@gmail.com" className="text-foreground/70 hover:text-foreground transition-colors">Contact</a>
+          <a href="mailto:mb@mokshbudhiraja.com" className="text-foreground/70 hover:text-foreground transition-colors">Contact</a>
         </div>
       </div>
     </motion.nav>
