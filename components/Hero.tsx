@@ -15,16 +15,19 @@ export default function Hero() {
           AVAILABLE FOR CONTRACT WORK
         </span>
         <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-[1.05] mb-6 text-foreground">
-          I build backends <br className="hidden md:block" />
-          <span className="text-foreground/40">that stay up.</span>
+          Full Stack <br className="hidden md:block" />
+          <span className="text-foreground/40">Developer.</span>
         </h1>
         <p className="text-xl md:text-2xl text-foreground/60 max-w-2xl leading-relaxed mb-10 font-medium">
-          APIs, queues, databases, deployment — from architecture to production. I ship robust systems for SaaS, E-commerce, and Real Estate.
+          Mehenga Developer | plan &gt; code &gt; live 🔁<br />
+          <span className="text-foreground/40 text-lg md:text-xl">
+            (bugs?.. <a href="mailto:mb@mokshbudhiraja.com" className="underline underline-offset-4 hover:text-foreground transition-colors">mb@mokshbudhiraja.com</a>🫢)
+          </span>
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 items-center">
           <a 
-            href="mailto:mb@mokshbudhiraja.com" 
+            href="mailto:mb@mokshbudhiraja.com"
             className="w-full sm:w-auto px-8 py-4 bg-foreground text-background font-medium rounded-2xl hover:scale-[1.02] active:scale-[0.98] transition-transform flex items-center justify-center gap-2 shadow-sm"
           >
             <Mail size={18} />

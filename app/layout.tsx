@@ -10,9 +10,9 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE),
   // Title targets terms people actually search. "Backend engineer" has effectively
   // no commercial search demand; "razorpay integration" and "webhook" do.
-  title: "Moksh Budhiraja — Payments & Backend Engineer | Razorpay, Webhooks, Node.js",
+  title: "Moksh Budhiraja — Full Stack Developer | Razorpay, Webhooks, Node.js",
   description:
-    "Backend engineer in Delhi. Razorpay subscriptions, webhook state machines, OAuth2, queues and deployment. Available for freelance and contract work.",
+    "Full stack developer in Delhi. Razorpay subscriptions, webhook state machines, OAuth2, queues and deployment. Available for freelance and contract work.",
   keywords: [
     "Razorpay integration developer",
     "Razorpay subscription integration",
@@ -29,14 +29,14 @@ export const metadata: Metadata = {
     type: "profile",
     url: SITE,
     siteName: "Moksh Budhiraja",
-    title: "Moksh Budhiraja — Payments & Backend Engineer",
+    title: "Moksh Budhiraja — Full Stack Developer",
     description:
       "Razorpay subscriptions, webhook state machines, queues and deployment. Freelance and contract work.",
     locale: "en_IN",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Moksh Budhiraja — Payments & Backend Engineer",
+    title: "Moksh Budhiraja — Full Stack Developer",
     description:
       "Razorpay subscriptions, webhook state machines, queues and deployment.",
   },
@@ -50,7 +50,7 @@ const personLd = {
   "@type": "Person",
   name: "Moksh Budhiraja",
   url: SITE,
-  jobTitle: "Backend Engineer",
+  jobTitle: "Full Stack Developer",
   email: "mailto:mb@mokshbudhiraja.com",
   address: { "@type": "PostalAddress", addressLocality: "Delhi", addressCountry: "IN" },
   sameAs: ["https://github.com/mb-great", "https://www.linkedin.com/in/mbgreat/"],
