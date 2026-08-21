@@ -1,273 +1,169 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Label Sheet Calculator - How Many Labels Fit Per Sheet</title>
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Label Sheet Calculator — How Many Labels Fit Per Sheet</title>
+<meta name="description" content="Work out how many labels or stickers fit on a print sheet. Enter sheet size and label size, get every layout ranked by least waste. Free, no signup, works in inches, mm and cm.">
 <link rel="canonical" href="https://mokshbudhiraja.com/tools/label-calculator">
-<meta name="description" content="Work out how many labels or stickers fit on a print sheet. Enter your sheet size and label size, get every layout ranked by least waste. Free, no signup.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://mokshbudhiraja.com/tools/label-calculator">
-<meta property="og:title" content="Label Sheet Calculator - How Many Labels Fit Per Sheet">
+<meta property="og:title" content="Label Sheet Calculator — How Many Labels Fit Per Sheet">
 <meta property="og:description" content="Enter sheet size and label size. Get every tiling layout ranked by least waste.">
 <meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* TT1 PAPER - refs/THEMES.md §7. Print trade spec sheet.
+   Registration red is used only for the winning result. */
+:root{
+  --bg:#FBFAF7; --surface:#FFFFFF; --text:#171614; --muted:#5C5A54;
+  --accent:#C8102E; --line:#E5E2DA;
+  --serif:"Newsreader",Georgia,serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:var(--serif);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:880px;margin:0 auto;padding:0 24px}
+h1{font-size:clamp(30px,4.6vw,44px);font-weight:600;line-height:1.1;letter-spacing:-0.022em;margin-bottom:10px}
+h2{font-size:clamp(21px,2.6vw,27px);font-weight:600;letter-spacing:-0.014em;margin-bottom:12px}
+h3{font-size:17px;font-weight:600;letter-spacing:-0.005em;margin-bottom:4px}
+p{color:var(--muted);max-width:62ch}
+.lede{font-size:19px;margin-bottom:8px}
+.rule{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
+header{padding:56px 0 32px;border-bottom:1px solid var(--line)}
+section{padding:40px 0;border-bottom:1px solid var(--line)}
+.grid3{display:grid;gap:16px}
+@media(min-width:700px){.grid3{grid-template-columns:1fr 1fr 160px}}
+label{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+input,select{width:100%;min-height:48px;padding:10px 12px;background:var(--surface);border:1px solid var(--line);border-radius:2px;font-family:var(--mono);font-size:16px;color:var(--text)}
+input:focus,select:focus{outline:none;border-color:var(--accent)}
+.fieldset{margin-bottom:26px}
+.fieldset .rule{display:block;margin-bottom:12px}
+button{min-height:52px;padding:0 30px;background:var(--text);color:var(--bg);border:0;border-radius:2px;
+  font-family:var(--mono);font-size:13px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:background .15s}
+button:hover{background:var(--accent)}
+table{width:100%;border-collapse:collapse;margin-top:18px;font-family:var(--mono);font-size:14px}
+th,td{text-align:left;padding:11px 10px;border-bottom:1px solid var(--line)}
+th{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:500}
+tbody tr:first-child{background:#FFF6F7}
+tbody tr:first-child td{font-weight:500}
+.pos{color:#166534}.neg{color:var(--accent)}
+.tw{overflow-x:auto}
+.error{font-family:var(--mono);font-size:14px;color:var(--accent);padding:14px 0}
+.faq{list-style:none;margin-top:8px}
+.faq li{padding:18px 0;border-bottom:1px solid var(--line)}
+.faq li:last-child{border-bottom:0}
+.faq p{font-size:16px}
+footer{padding:36px 0 60px;font-size:15px;color:var(--muted)}
+footer a{color:var(--accent)}
+.contact{display:inline-flex;align-items:center;min-height:48px;margin-top:14px;padding:0 20px;
+  background:var(--text);color:var(--bg);text-decoration:none;border-radius:2px;
+  font-family:var(--mono);font-size:13px;letter-spacing:.08em}
+.contact:hover{background:var(--accent);color:var(--bg)}
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <span class="rule">Print &amp; label tools</span>
+  <h1>How many labels fit on a sheet?</h1>
+  <p class="lede">Put in your sheet size and the label size you want. It works out every row and
+  column combination that fits, and ranks them by how little the label has to change to tile the
+  sheet exactly.</p>
+</header>
+
+<section class="wrap">
+  <div class="fieldset">
+    <span class="rule">Printable area</span>
+    <div class="grid3">
+      <div><label for="printWidth">Width</label><input type="number" id="printWidth" step="any" min="0" value="12.5"></div>
+      <div><label for="printHeight">Height</label><input type="number" id="printHeight" step="any" min="0" value="18.5"></div>
+      <div><label for="printUnit">Unit</label><select id="printUnit"><option value="in">Inches</option><option value="cm">Centimetres</option><option value="mm">Millimetres</option><option value="px">Pixels</option></select></div>
+    </div>
+  </div>
+  <div class="fieldset">
+    <span class="rule">Label size you want</span>
+    <div class="grid3">
+      <div><label for="labelWidth">Width</label><input type="number" id="labelWidth" step="any" min="0" value="2"></div>
+      <div><label for="labelHeight">Height</label><input type="number" id="labelHeight" step="any" min="0" value="1"></div>
+      <div><label for="labelUnit">Unit</label><select id="labelUnit"><option value="in">Inches</option><option value="cm">Centimetres</option><option value="mm">Millimetres</option><option value="px">Pixels</option></select></div>
+    </div>
+  </div>
+  <div class="fieldset" style="max-width:220px">
+    <label for="maxOptions">How many options to show</label>
+    <input type="number" id="maxOptions" min="1" value="10">
+  </div>
+  <button onclick="calculate()">Calculate layouts</button>
+  <div id="results"></div>
+</section>
+
+<section class="wrap">
+  <h2>Common sheet sizes</h2>
+  <p>Measure your <em>printable</em> area, not the paper. Most home printers cannot print to the
+  edge and lose 3&ndash;6&nbsp;mm on each side.</p>
+  <div class="tw">
+  <table>
+    <thead><tr><th>Sheet</th><th>Millimetres</th><th>Inches</th><th>Typical printable area</th></tr></thead>
+    <tbody>
+      <tr><td>A4</td><td>210 &times; 297</td><td>8.27 &times; 11.69</td><td>200 &times; 287 mm</td></tr>
+      <tr><td>US Letter</td><td>216 &times; 279</td><td>8.5 &times; 11</td><td>8.0 &times; 10.5 in</td></tr>
+      <tr><td>US Legal</td><td>216 &times; 356</td><td>8.5 &times; 14</td><td>8.0 &times; 13.5 in</td></tr>
+      <tr><td>A3</td><td>297 &times; 420</td><td>11.69 &times; 16.54</td><td>287 &times; 410 mm</td></tr>
+      <tr><td>A5</td><td>148 &times; 210</td><td>5.83 &times; 8.27</td><td>138 &times; 200 mm</td></tr>
+      <tr><td>12 &times; 18 sheet</td><td>305 &times; 457</td><td>12 &times; 18</td><td>12.5 &times; 18.5 in trimmed</td></tr>
+      <tr><td>4 &times; 6 photo</td><td>102 &times; 152</td><td>4 &times; 6</td><td>full bleed</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section class="wrap">
+  <h2>Questions people actually ask</h2>
+  <ul class="faq">
+    <li><h3>How many 2 &times; 1 inch labels fit on A4?</h3>
+      <p>Four across and ten down, so forty per sheet, with a strip left over. If you want no
+      waste the label has to stretch slightly &mdash; put 200 &times; 287 mm in above and the
+      calculator shows you by how much.</p></li>
+    <li><h3>How many round stickers fit on a sheet?</h3>
+      <p>Treat a circle as its bounding square. A 50&nbsp;mm round sticker tiles like a
+      50 &times; 50&nbsp;mm label. Hexagonal nesting fits more but almost no cutter supports it.</p></li>
+    <li><h3>What does perfect tiling mean?</h3>
+      <p>The labels fill the printable area with no leftover strip. Getting there usually means
+      the label size moves a little. The deviation columns show exactly how much &mdash; positive
+      means slightly bigger than you asked for, negative means smaller.</p></li>
+    <li><h3>Why does it suggest a size I did not ask for?</h3>
+      <p>Because your requested size does not divide evenly into the sheet. Nothing does, usually.
+      The ranking shows you the closest options so you can pick which compromise you would rather
+      make &mdash; a wider label or a shorter one.</p></li>
+    <li><h3>Can I mix millimetres and inches?</h3>
+      <p>Yes. Sheet and label each have their own unit and they do not have to match.</p></li>
+    <li><h3>Does it account for bleed and gutters?</h3>
+      <p>Not yet. Subtract your bleed from the printable area before entering it. If you need a
+      2&nbsp;mm gap between labels, add it to the label size instead.</p></li>
+  </ul>
+</section>
+
+<footer class="wrap">
+  <p style="max-width:60ch">Built by Moksh Budhiraja, a full stack developer in Delhi.
+  I build small tools like this one, and the sites they sit on.</p>
+  <a class="contact" href="mailto:mb@mokshbudhiraja.com">mb@mokshbudhiraja.com</a>
+</footer>
+
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"SoftwareApplication",
-"name":"Label Sheet Calculator","applicationCategory":"UtilitiesApplication",
-"operatingSystem":"Any","url":"https://mokshbudhiraja.com/tools/label-calculator",
-"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
-"author":{"@type":"Person","name":"Moksh Budhiraja","url":"https://mokshbudhiraja.com"}}
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Label Sheet Calculator","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","url":"https://mokshbudhiraja.com/tools/label-calculator","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@type":"Person","name":"Moksh Budhiraja","url":"https://mokshbudhiraja.com"}}
 </script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"How many labels fit on a sheet?","acceptedAnswer":{"@type":"Answer","text":"Divide the sheet width by the label width and the sheet height by the label height, then round down. This calculator does that for every workable combination and ranks them by how little the label size has to change to tile the sheet exactly."}},
-{"@type":"Question","name":"What is perfect tiling?","acceptedAnswer":{"@type":"Answer","text":"A layout where the labels fill the printable area with no leftover strip. Getting there usually means adjusting the label size slightly. The deviation columns show by how much."}},
-{"@type":"Question","name":"Does it work in mm and cm?","acceptedAnswer":{"@type":"Answer","text":"Yes. Sheet and label sizes can each use inches, millimetres or centimetres, and they do not have to match."}}]}
+{"@type":"Question","name":"How many 2 x 1 inch labels fit on A4?","acceptedAnswer":{"@type":"Answer","text":"Four across and ten down, so forty per sheet, with a strip left over. For no waste the label has to stretch slightly."}},
+{"@type":"Question","name":"How many round stickers fit on a sheet?","acceptedAnswer":{"@type":"Answer","text":"Treat a circle as its bounding square. A 50mm round sticker tiles like a 50 x 50mm label."}},
+{"@type":"Question","name":"What does perfect tiling mean?","acceptedAnswer":{"@type":"Answer","text":"The labels fill the printable area with no leftover strip. Getting there usually means the label size moves slightly."}},
+{"@type":"Question","name":"Can I mix millimetres and inches?","acceptedAnswer":{"@type":"Answer","text":"Yes. Sheet and label each have their own unit and they do not have to match."}},
+{"@type":"Question","name":"Does it account for bleed and gutters?","acceptedAnswer":{"@type":"Answer","text":"Not yet. Subtract bleed from the printable area first. For a gap between labels, add it to the label size."}}]}
 </script>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
-        
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            padding: 40px;
-        }
-        
-        h1 {
-            color: #333;
-            margin-bottom: 10px;
-            font-size: 28px;
-        }
-        
-        .subtitle {
-            color: #666;
-            margin-bottom: 30px;
-            font-size: 14px;
-        }
-        
-        .input-group {
-            margin-bottom: 25px;
-        }
-        
-        .input-row {
-            display: flex;
-            gap: 15px;
-            align-items: flex-end;
-            margin-bottom: 15px;
-        }
-        
-        .input-field {
-            flex: 1;
-        }
-        
-        label {
-            display: block;
-            margin-bottom: 8px;
-            color: #555;
-            font-weight: 500;
-            font-size: 14px;
-        }
-        
-        input[type="number"],
-        select {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #e0e0e0;
-            border-radius: 6px;
-            font-size: 15px;
-            transition: border-color 0.3s;
-        }
-        
-        input[type="number"]:focus,
-        select:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-        
-        .section-title {
-            font-size: 18px;
-            color: #333;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #f0f0f0;
-        }
-        
-        button {
-            width: 100%;
-            padding: 15px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            border-radius: 6px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        
-        button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
-        }
-        
-        button:active {
-            transform: translateY(0);
-        }
-        
-        #results {
-            margin-top: 40px;
-        }
-        
-        .results-header {
-            font-size: 20px;
-            color: #333;
-            margin-bottom: 20px;
-        }
-        
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 15px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        }
-        
-        th {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 14px;
-            text-align: left;
-            font-weight: 600;
-            font-size: 13px;
-        }
-        
-        td {
-            padding: 12px 14px;
-            border-bottom: 1px solid #f0f0f0;
-            color: #555;
-            font-size: 14px;
-        }
-        
-        tr:hover {
-            background-color: #f9f9f9;
-        }
-        
-        tr:last-child td {
-            border-bottom: none;
-        }
-        
-        .best-match {
-            background-color: #e8f5e9 !important;
-        }
-        
-        .deviation {
-            font-size: 12px;
-            color: #999;
-        }
-        
-        .positive {
-            color: #4caf50;
-        }
-        
-        .negative {
-            color: #f44336;
-        }
-        
-        .no-results {
-            text-align: center;
-            padding: 40px;
-            color: #999;
-            font-size: 16px;
-        }
-        
-        .error {
-            background-color: #fee;
-            border: 1px solid #fcc;
-            color: #c33;
-            padding: 12px;
-            border-radius: 6px;
-            margin-bottom: 20px;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>How Many Labels Fit On A Sheet?</h1>
-        <p class="subtitle">Find the best rows and columns for perfect tiling with zero waste</p>
-        
-        <div class="input-group">
-            <div class="section-title">Printing Area</div>
-            <div class="input-row">
-                <div class="input-field">
-                    <label for="printWidth">Width</label>
-                    <input type="number" id="printWidth" step="any" min="0" value="12.5">
-                </div>
-                <div class="input-field">
-                    <label for="printHeight">Height</label>
-                    <input type="number" id="printHeight" step="any" min="0" value="18.5">
-                </div>
-                <div class="input-field">
-                    <label for="printUnit">Unit</label>
-                    <select id="printUnit">
-                        <option value="in">Inches</option>
-                        <option value="cm">Centimeters</option>
-                        <option value="mm">Millimeters</option>
-                        <option value="px">Pixels</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-        
-        <div class="input-group">
-            <div class="section-title">Desired Label Size</div>
-            <div class="input-row">
-                <div class="input-field">
-                    <label for="labelWidth">Width</label>
-                    <input type="number" id="labelWidth" step="any" min="0" value="2">
-                </div>
-                <div class="input-field">
-                    <label for="labelHeight">Height</label>
-                    <input type="number" id="labelHeight" step="any" min="0" value="1">
-                </div>
-                <div class="input-field">
-                    <label for="labelUnit">Unit</label>
-                    <select id="labelUnit">
-                        <option value="in">Inches</option>
-                        <option value="cm">Centimeters</option>
-                        <option value="mm">Millimeters</option>
-                        <option value="px">Pixels</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-        
-        <div class="input-group">
-            <div class="input-field">
-                <label for="maxOptions">Maximum Number of Options</label>
-                <input type="number" id="maxOptions" min="1" value="10">
-            </div>
-        </div>
-        
-        <button onclick="calculate()">Calculate Perfect Tiling</button>
-        
-        <div id="results"></div>
-    </div>
-    
-    <script>
+<script>
+
         const unitConversions = {
             'in': 1,
             'cm': 2.54,
@@ -385,22 +281,7 @@
             html += '</table>';
             resultsDiv.innerHTML = html;
         }
-    </script>
-
-<div style="max-width:960px;margin:22px auto 40px;padding:20px 24px;background:#fff;border-radius:12px;
-            font:15px/1.6 system-ui,-apple-system,sans-serif;color:#444">
-  <p style="margin:0 0 8px"><strong>How it works.</strong> The calculator tries every row and column
-  count that fits your sheet, then ranks the results by how far the label size has to move from what
-  you asked for. Rank #1 wastes the least. The deviation columns are the honest bit - a positive
-  number means the label gets slightly bigger, negative means slightly smaller.</p>
-  <p style="margin:0 0 8px"><strong>Common sheet sizes:</strong> A4 is 210 x 297 mm, Letter is
-  8.5 x 11 inches, and most home printers cannot print to the edge - measure your printable area,
-  not the paper.</p>
-  <p style="margin:14px 0 0;padding-top:14px;border-top:1px solid #eee">
-    Built by <a href="https://mokshbudhiraja.com" style="color:#5b5bd6">Moksh Budhiraja</a>, a full
-    stack developer. Need a tool or a site built properly?
-    <a href="mailto:mb@mokshbudhiraja.com" style="color:#5b5bd6">mb@mokshbudhiraja.com</a>
-  </p>
-</div>
+    
+</script>
 </body>
 </html>
