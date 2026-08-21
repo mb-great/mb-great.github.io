@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Label Sheet Calculator - How Many Labels Fit Per Sheet</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="canonical" href="https://mokshbudhiraja.com/tools/label-calculator">
+<meta name="description" content="Work out how many labels or stickers fit on a print sheet. Enter your sheet size and label size, get every layout ranked by least waste. Free, no signup.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mokshbudhiraja.com/tools/label-calculator">
+<meta property="og:title" content="Label Sheet Calculator - How Many Labels Fit Per Sheet">
+<meta property="og:description" content="Enter sheet size and label size. Get every tiling layout ranked by least waste.">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication",
+"name":"Label Sheet Calculator","applicationCategory":"UtilitiesApplication",
+"operatingSystem":"Any","url":"https://mokshbudhiraja.com/tools/label-calculator",
+"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
+"author":{"@type":"Person","name":"Moksh Budhiraja","url":"https://mokshbudhiraja.com"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"How many labels fit on a sheet?","acceptedAnswer":{"@type":"Answer","text":"Divide the sheet width by the label width and the sheet height by the label height, then round down. This calculator does that for every workable combination and ranks them by how little the label size has to change to tile the sheet exactly."}},
+{"@type":"Question","name":"What is perfect tiling?","acceptedAnswer":{"@type":"Answer","text":"A layout where the labels fill the printable area with no leftover strip. Getting there usually means adjusting the label size slightly. The deviation columns show by how much."}},
+{"@type":"Question","name":"Does it work in mm and cm?","acceptedAnswer":{"@type":"Answer","text":"Yes. Sheet and label sizes can each use inches, millimetres or centimetres, and they do not have to match."}}]}
+</script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 40px;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+        
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+        
+        .input-group {
+            margin-bottom: 25px;
+        }
+        
+        .input-row {
+            display: flex;
+            gap: 15px;
+            align-items: flex-end;
+            margin-bottom: 15px;
+        }
+        
+        .input-field {
+            flex: 1;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 500;
+            font-size: 14px;
+        }
+        
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 15px;
+            transition: border-color 0.3s;
+        }
+        
+        input[type="number"]:focus,
+        select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .section-title {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        button {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        #results {
+            margin-top: 40px;
+        }
+        
+        .results-header {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 14px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 13px;
+        }
+        
+        td {
+            padding: 12px 14px;
+            border-bottom: 1px solid #f0f0f0;
+            color: #555;
+            font-size: 14px;
+        }
+        
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+        
+        tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .best-match {
+            background-color: #e8f5e9 !important;
+        }
+        
+        .deviation {
+            font-size: 12px;
+            color: #999;
+        }
+        
+        .positive {
+            color: #4caf50;
+        }
+        
+        .negative {
+            color: #f44336;
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            color: #999;
+            font-size: 16px;
+        }
+        
+        .error {
+            background-color: #fee;
+            border: 1px solid #fcc;
+            color: #c33;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>How Many Labels Fit On A Sheet?</h1>
+        <p class="subtitle">Find the best rows and columns for perfect tiling with zero waste</p>
+        
+        <div class="input-group">
+            <div class="section-title">Printing Area</div>
+            <div class="input-row">
+                <div class="input-field">
+                    <label for="printWidth">Width</label>
+                    <input type="number" id="printWidth" step="any" min="0" value="12.5">
+                </div>
+                <div class="input-field">
+                    <label for="printHeight">Height</label>
+                    <input type="number" id="printHeight" step="any" min="0" value="18.5">
+                </div>
+                <div class="input-field">
+                    <label for="printUnit">Unit</label>
+                    <select id="printUnit">
+                        <option value="in">Inches</option>
+                        <option value="cm">Centimeters</option>
+                        <option value="mm">Millimeters</option>
+                        <option value="px">Pixels</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        
+        <div class="input-group">
+            <div class="section-title">Desired Label Size</div>
+            <div class="input-row">
+                <div class="input-field">
+                    <label for="labelWidth">Width</label>
+                    <input type="number" id="labelWidth" step="any" min="0" value="2">
+                </div>
+                <div class="input-field">
+                    <label for="labelHeight">Height</label>
+                    <input type="number" id="labelHeight" step="any" min="0" value="1">
+                </div>
+                <div class="input-field">
+                    <label for="labelUnit">Unit</label>
+                    <select id="labelUnit">
+                        <option value="in">Inches</option>
+                        <option value="cm">Centimeters</option>
+                        <option value="mm">Millimeters</option>
+                        <option value="px">Pixels</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        
+        <div class="input-group">
+            <div class="input-field">
+                <label for="maxOptions">Maximum Number of Options</label>
+                <input type="number" id="maxOptions" min="1" value="10">
+            </div>
+        </div>
+        
+        <button onclick="calculate()">Calculate Perfect Tiling</button>
+        
+        <div id="results"></div>
+    </div>
+    
+    <script>
+        const unitConversions = {
+            'in': 1,
+            'cm': 2.54,
+            'mm': 25.4,
+            'px': 96
+        };
+        
+        function toInches(value, unit) {
+            return value / unitConversions[unit];
+        }
+        
+        function fromInches(value, unit) {
+            return value * unitConversions[unit];
+        }
+        
+        function calculate() {
+            const printWidth = parseFloat(document.getElementById('printWidth').value);
+            const printHeight = parseFloat(document.getElementById('printHeight').value);
+            const printUnit = document.getElementById('printUnit').value;
+            
+            const labelWidth = parseFloat(document.getElementById('labelWidth').value);
+            const labelHeight = parseFloat(document.getElementById('labelHeight').value);
+            const labelUnit = document.getElementById('labelUnit').value;
+            
+            const maxOptions = parseInt(document.getElementById('maxOptions').value);
+            
+            const resultsDiv = document.getElementById('results');
+            
+            if (isNaN(printWidth) || isNaN(printHeight) || isNaN(labelWidth) || isNaN(labelHeight) || isNaN(maxOptions)) {
+                resultsDiv.innerHTML = '<div class="error">Please fill in all fields with valid numbers.</div>';
+                return;
+            }
+            
+            if (printWidth <= 0 || printHeight <= 0 || labelWidth <= 0 || labelHeight <= 0 || maxOptions <= 0) {
+                resultsDiv.innerHTML = '<div class="error">All values must be greater than zero.</div>';
+                return;
+            }
+            
+            const printWidthInches = toInches(printWidth, printUnit);
+            const printHeightInches = toInches(printHeight, printUnit);
+            const labelWidthInches = toInches(labelWidth, labelUnit);
+            const labelHeightInches = toInches(labelHeight, labelUnit);
+            
+            const expectedCols = printWidthInches / labelWidthInches;
+            const expectedRows = printHeightInches / labelHeightInches;
+            
+            const minCols = Math.max(1, Math.floor(expectedCols * 0.5));
+            const maxCols = Math.ceil(expectedCols * 1.5);
+            const minRows = Math.max(1, Math.floor(expectedRows * 0.5));
+            const maxRows = Math.ceil(expectedRows * 1.5);
+            
+            const results = [];
+            
+            for (let cols = minCols; cols <= maxCols; cols++) {
+                for (let rows = minRows; rows <= maxRows; rows++) {
+                    const actualLabelWidth = printWidthInches / cols;
+                    const actualLabelHeight = printHeightInches / rows;
+                    
+                    const widthDeviation = ((actualLabelWidth - labelWidthInches) / labelWidthInches) * 100;
+                    const heightDeviation = ((actualLabelHeight - labelHeightInches) / labelHeightInches) * 100;
+                    
+                    const absWidthDev = Math.abs(widthDeviation);
+                    const absHeightDev = Math.abs(heightDeviation);
+                    const totalDeviation = absWidthDev + absHeightDev;
+                    
+                    results.push({
+                        rows: rows,
+                        cols: cols,
+                        actualLabelWidth: actualLabelWidth,
+                        actualLabelHeight: actualLabelHeight,
+                        widthDeviation: widthDeviation,
+                        heightDeviation: heightDeviation,
+                        totalDeviation: totalDeviation,
+                        totalLabels: rows * cols
+                    });
+                }
+            }
+            
+            results.sort((a, b) => a.totalDeviation - b.totalDeviation);
+            
+            const topResults = results.slice(0, maxOptions);
+            
+            if (topResults.length === 0) {
+                resultsDiv.innerHTML = '<div class="no-results">No valid tiling options found.</div>';
+                return;
+            }
+            
+            const unitLabel = labelUnit === 'in' ? '"' : labelUnit;
+            
+            let html = '<div class="results-header">Perfect Tiling Options (Sorted by Least Deviation)</div>';
+            html += '<table>';
+            html += '<tr><th>Rank</th><th>Rows</th><th>Columns</th><th>Total Labels</th><th>Label Width</th><th>Label Height</th><th>Width Dev.</th><th>Height Dev.</th></tr>';
+            
+            topResults.forEach((result, index) => {
+                const displayWidth = fromInches(result.actualLabelWidth, labelUnit).toFixed(3);
+                const displayHeight = fromInches(result.actualLabelHeight, labelUnit).toFixed(3);
+                
+                const widthDevClass = result.widthDeviation >= 0 ? 'positive' : 'negative';
+                const heightDevClass = result.heightDeviation >= 0 ? 'positive' : 'negative';
+                
+                const rowClass = index === 0 ? 'best-match' : '';
+                
+                html += `<tr class="${rowClass}">`;
+                html += `<td><strong>#${index + 1}</strong></td>`;
+                html += `<td>${result.rows}</td>`;
+                html += `<td>${result.cols}</td>`;
+                html += `<td><strong>${result.totalLabels}</strong></td>`;
+                html += `<td>${displayWidth} ${unitLabel}</td>`;
+                html += `<td>${displayHeight} ${unitLabel}</td>`;
+                html += `<td class="deviation ${widthDevClass}">${result.widthDeviation >= 0 ? '+' : ''}${result.widthDeviation.toFixed(2)}%</td>`;
+                html += `<td class="deviation ${heightDevClass}">${result.heightDeviation >= 0 ? '+' : ''}${result.heightDeviation.toFixed(2)}%</td>`;
+                html += '</tr>';
+            });
+            
+            html += '</table>';
+            resultsDiv.innerHTML = html;
+        }
+    </script>
+
+<div style="max-width:960px;margin:22px auto 40px;padding:20px 24px;background:#fff;border-radius:12px;
+            font:15px/1.6 system-ui,-apple-system,sans-serif;color:#444">
+  <p style="margin:0 0 8px"><strong>How it works.</strong> The calculator tries every row and column
+  count that fits your sheet, then ranks the results by how far the label size has to move from what
+  you asked for. Rank #1 wastes the least. The deviation columns are the honest bit - a positive
+  number means the label gets slightly bigger, negative means slightly smaller.</p>
+  <p style="margin:0 0 8px"><strong>Common sheet sizes:</strong> A4 is 210 x 297 mm, Letter is
+  8.5 x 11 inches, and most home printers cannot print to the edge - measure your printable area,
+  not the paper.</p>
+  <p style="margin:14px 0 0;padding-top:14px;border-top:1px solid #eee">
+    Built by <a href="https://mokshbudhiraja.com" style="color:#5b5bd6">Moksh Budhiraja</a>, a full
+    stack developer. Need a tool or a site built properly?
+    <a href="mailto:mb@mokshbudhiraja.com" style="color:#5b5bd6">mb@mokshbudhiraja.com</a>
+  </p>
+</div>
+</body>
+</html>
