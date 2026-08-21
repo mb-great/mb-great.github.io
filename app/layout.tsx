@@ -4,9 +4,61 @@ import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
+const SITE = "https://mokshbudhiraja.com";
+
 export const metadata: Metadata = {
-  title: "Moksh Budhiraja - Backend Engineer",
-  description: "I build backends that stay up. APIs, queues, databases, deployment - from code to production. Available for freelance and contract work.",
+  metadataBase: new URL(SITE),
+  // Title targets terms people actually search. "Backend engineer" has effectively
+  // no commercial search demand; "razorpay integration" and "webhook" do.
+  title: "Moksh Budhiraja — Payments & Backend Engineer | Razorpay, Webhooks, Node.js",
+  description:
+    "Backend engineer in Delhi. Razorpay subscriptions, webhook state machines, OAuth2, queues and deployment. Available for freelance and contract work.",
+  keywords: [
+    "Razorpay integration developer",
+    "Razorpay subscription integration",
+    "webhook developer",
+    "Node.js backend developer India",
+    "Supabase developer",
+    "payment gateway integration freelancer",
+    "backend engineer Delhi",
+  ],
+  authors: [{ name: "Moksh Budhiraja", url: SITE }],
+  creator: "Moksh Budhiraja",
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "profile",
+    url: SITE,
+    siteName: "Moksh Budhiraja",
+    title: "Moksh Budhiraja — Payments & Backend Engineer",
+    description:
+      "Razorpay subscriptions, webhook state machines, queues and deployment. Freelance and contract work.",
+    locale: "en_IN",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Moksh Budhiraja — Payments & Backend Engineer",
+    description:
+      "Razorpay subscriptions, webhook state machines, queues and deployment.",
+  },
+  robots: { index: true, follow: true },
+};
+
+// Person schema. Tells search engines who this is rather than making them guess
+// from the page text, and is what feeds knowledge-panel style results.
+const personLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Moksh Budhiraja",
+  url: SITE,
+  jobTitle: "Backend Engineer",
+  email: "mailto:mb@mokshbudhiraja.com",
+  address: { "@type": "PostalAddress", addressLocality: "Delhi", addressCountry: "IN" },
+  sameAs: ["https://github.com/mb-great", "https://www.linkedin.com/in/mbgreat/"],
+  knowsAbout: [
+    "Node.js", "Express", "PostgreSQL", "Supabase", "AWS",
+    "Razorpay subscriptions", "Webhooks", "OAuth2",
+    "Job queues", "Incident response", "Nginx", "PM2",
+  ],
 };
 
 export default function RootLayout({
@@ -16,6 +68,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personLd) }}
+        />
+      </head>
       <body className={`${inter.className} relative bg-background text-foreground min-h-screen selection:bg-indigo-500/30 selection:text-indigo-200`} suppressHydrationWarning>
         {/* Ambient background Apple/Samsung style glass effects */}
         <div className="fixed inset-0 z-[-1] overflow-hidden pointer-events-none">
