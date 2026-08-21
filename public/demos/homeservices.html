@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Halstead Roofing &amp; HVAC — Same-Day Callouts</title>
+<meta name="description" content="Roofing, heating and air. Same-day callouts, priced before we start.">
+<script>document.documentElement.classList.add("js")</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* Measured from a live siding/roofing contractor with ditto_extract.py, 2026-08-21.
+   Source: #0A0A0A near-black ground, #FFF75F yellow, #FAF8F1 warm off-white,
+   commercial grotesque + semi-expanded cut, 11-13px labels against 60px display.
+   TRANSFORM (ditto Step 4.5):
+     1. Ground inverted - the source runs near-black, but gym already owns black in
+        this library, so #FAF8F1 is promoted to ground and black becomes ink.
+     2. Type named - Space Grotesk. The source face is commercial, unavailable.
+     3. Yellow is a FILL only, never text. #FFF75F on white is ~1.2:1 and unreadable.
+        Black on yellow is ~16:1.
+   Library: medspa dark-brass / gym black-acid / salon light-teal / photography
+   warm-olive / dental light-cool-blue / this light-warm-yellow. */
+:root{
+  --bg:#FAF8F1; --surface:#FFFFFF; --ink:#0A0A0A; --line:#DDD9CC;
+  --muted:#555555; --hi:#FFF75F;
+  --f:"Space Grotesk",system-ui,-apple-system,sans-serif;
+  --pad:96px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--f);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+img{display:block;max-width:100%;height:auto}
+
+h1{font-weight:700;font-size:clamp(38px,7.2vw,60px);line-height:1;letter-spacing:-0.035em;text-transform:uppercase}
+h2{font-weight:700;font-size:clamp(25px,3.6vw,40px);line-height:1.05;letter-spacing:-0.028em;text-transform:uppercase}
+h3{font-weight:700;font-size:17px;letter-spacing:-0.01em}
+.eyebrow{font-size:11px;letter-spacing:0.16em;text-transform:uppercase;font-weight:500;background:var(--hi);color:var(--ink);padding:5px 9px;display:inline-block}
+p{color:var(--muted);max-width:58ch;font-size:15px}
+a{color:inherit}
+
+nav{position:sticky;top:0;z-index:10;background:var(--ink);border-bottom:3px solid var(--hi)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
+.brand{font-weight:700;font-size:18px;letter-spacing:-0.02em;text-transform:uppercase;color:#fff}
+nav ul{display:flex;gap:2px;list-style:none;font-size:13px;text-transform:uppercase;letter-spacing:.06em}
+nav a{display:inline-flex;align-items:center;min-height:44px;padding:0 13px;text-decoration:none;color:#BFBFBF;transition:color .15s}
+nav a:hover{color:var(--hi)}
+@media(max-width:860px){nav ul{display:none}}
+
+.navtoggle{display:none;width:44px;height:44px;align-items:center;justify-content:center;background:transparent;border:0;cursor:pointer;padding:0;margin-left:auto;margin-right:10px;color:#fff}
+.navtoggle span{display:block;width:22px;height:2px;background:currentColor;position:relative;transition:background .15s}
+.navtoggle span::before,.navtoggle span::after{content:"";position:absolute;left:0;width:22px;height:2px;background:currentColor;transition:transform .22s ease}
+.navtoggle span::before{top:-7px}.navtoggle span::after{top:7px}
+.navtoggle[aria-expanded="true"] span{background:transparent}
+.navtoggle[aria-expanded="true"] span::before{transform:translateY(7px) rotate(45deg)}
+.navtoggle[aria-expanded="true"] span::after{transform:translateY(-7px) rotate(-45deg)}
+@media(max-width:860px){
+  .navtoggle{display:flex}
+  nav ul{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;background:var(--ink);padding:8px 24px 16px}
+  nav ul.open{display:flex}
+  nav ul li{width:100%}
+  nav ul a{min-height:52px;padding:0;width:100%}
+}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:54px;padding:0 26px;border:0;border-radius:0;cursor:pointer;
+  background:var(--hi);color:var(--ink);text-decoration:none;font-family:var(--f);font-weight:700;font-size:16px;
+  letter-spacing:-0.01em;text-transform:uppercase;transition:transform .12s}
+.btn:hover{transform:translateY(-2px)}
+.btn-dark{background:var(--ink);color:#fff}
+.btn-ghost{background:transparent;color:var(--ink);border:2px solid var(--ink)}
+
+section{padding:var(--pad) 0}
+section+section{border-top:2px solid var(--ink)}
+@media(max-width:860px){:root{--pad:52px}}
+
+.hero{padding-top:60px;padding-bottom:0}
+.hero p{font-size:17px;margin:20px 0 26px}
+.actions{display:flex;gap:12px;flex-wrap:wrap}
+.hero-grid{display:grid;gap:34px;align-items:center}
+@media(min-width:861px){.hero-grid{grid-template-columns:1.1fr .9fr;gap:56px}}
+.hero-img{aspect-ratio:4/5;object-fit:cover;width:100%}
+
+.callbar{background:var(--ink);color:#fff;padding:22px 0;margin-top:44px}
+.callbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.callbar .n{font-size:clamp(23px,3.6vw,34px);font-weight:700;letter-spacing:-0.03em;color:var(--hi);text-decoration:none;display:inline-flex;align-items:center;min-height:48px}
+.callbar .l{font-size:12px;color:#BFBFBF;text-transform:uppercase;letter-spacing:.1em}
+.callbar .v{font-weight:700;font-size:19px}
+
+.grid{display:grid;gap:2px;background:var(--ink);border:2px solid var(--ink);margin-top:40px}
+@media(min-width:761px){.grid{grid-template-columns:repeat(3,1fr)}}
+.cell{background:var(--bg);padding:28px 22px}
+.cell h3{margin-bottom:8px}
+.cell p{font-size:14px}
+.tag{background:var(--hi);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 7px;display:inline-block;margin-bottom:12px}
+
+.gallery{display:grid;gap:2px;background:var(--ink);border:2px solid var(--ink);margin-top:40px}
+@media(min-width:761px){.gallery{grid-template-columns:repeat(3,1fr)}}
+.gallery img{aspect-ratio:4/5;object-fit:cover;width:100%}
+
+.steps{list-style:none;margin-top:34px;counter-reset:s}
+.steps li{counter-increment:s;padding:18px 0;border-bottom:2px solid var(--line);display:grid;grid-template-columns:50px 1fr;gap:14px;align-items:start}
+.steps li::before{content:counter(s);background:var(--hi);font-weight:700;width:34px;height:34px;display:flex;align-items:center;justify-content:center;font-size:16px}
+.steps p{font-size:14px;margin-top:3px}
+
+.two{display:grid;gap:40px}
+@media(min-width:861px){.two{grid-template-columns:1fr 1fr;gap:60px;align-items:start}}
+.area{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.area li{border:2px solid var(--ink);padding:7px 12px;font-size:13px;font-weight:500}
+
+footer{background:var(--ink);color:#BFBFBF;padding:38px 0;font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px}
+footer a{color:var(--hi);text-decoration:none;display:inline-flex;align-items:center;min-height:44px}
+
+html.js [data-reveal]{opacity:0;transform:translateY(20px)}
+html.js [data-reveal].in{opacity:1;transform:none;transition:opacity .5s cubic-bezier(.22,1,.36,1),transform .5s cubic-bezier(.22,1,.36,1)}
+@media (prefers-reduced-motion:reduce){html.js [data-reveal],html.js [data-reveal].in{opacity:1;transform:none;transition:none}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <span class="brand" data-name>Halstead</span>
+    <button class="navtoggle" type="button" aria-expanded="false" aria-controls="navmenu" aria-label="Menu"><span></span></button>
+    <ul id="navmenu">
+      <li><a href="#work">What we do</a></li>
+      <li><a href="#how">How it works</a></li>
+      <li><a href="#area">Service area</a></li>
+    </ul>
+    <a class="btn" href="tel:+15551234567">Call now</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <span class="eyebrow" data-reveal="0">Roofing &middot; Heating &middot; Air</span>
+        <h1 data-reveal="60">Same day.<br>Priced before<br>we start.</h1>
+        <p>Leaks, no heat, no cool. You get a number over the phone before anyone gets in a van, and it does not move once we are on the roof. Twenty-two years, same family, same town.</p>
+        <div class="actions" data-reveal="140">
+          <a class="btn" href="tel:+15551234567">Call (555) 123-4567</a>
+          <a class="btn btn-ghost" href="#work">What we do</a>
+        </div>
+      </div>
+      <img class="hero-img" src="img/homeservices/hero.webp" width="1200" height="1500"
+           fetchpriority="high" decoding="async"
+           alt="A technician in a hard hat and hi-vis vest holding a pipe wrench">
+    </div>
+  </div>
+  <div class="callbar">
+    <div class="wrap">
+      <div><div class="l">Emergency, 7 days</div><a class="n" href="tel:+15551234567">(555) 123-4567</a></div>
+      <div><div class="l">Typical response</div><div class="v">Under 3 hours</div></div>
+      <div><div class="l">Licensed &amp; insured</div><div class="v">Lic. #HS-44812</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <span class="eyebrow" data-reveal="0">What we do</span>
+    <h2 data-reveal="60">Six things, all of them properly</h2>
+    <div class="grid" data-reveal="120">
+      <div class="cell"><span class="tag">Roofing</span><h3>Repairs &amp; replacement</h3><p>Shingle, tile and flat. We photograph the damage and show you before quoting.</p></div>
+      <div class="cell"><span class="tag">Emergency</span><h3>Storm &amp; leak callouts</h3><p>Tarped the same day, permanent fix scheduled within the week.</p></div>
+      <div class="cell"><span class="tag">HVAC</span><h3>Heating &amp; air repair</h3><p>All major brands. We carry the common parts, so most jobs finish on the first visit.</p></div>
+      <div class="cell"><span class="tag">HVAC</span><h3>System replacement</h3><p>Sized for the house, not upsold. Financing available over 24 months.</p></div>
+      <div class="cell"><span class="tag">Maintenance</span><h3>Twice-yearly service</h3><p>$180 a year covers both visits and puts you at the front of the queue in a heatwave.</p></div>
+      <div class="cell"><span class="tag">Honest</span><h3>What we don't do</h3><p>No subcontractors. No commission. If the fix is a $40 part, we will tell you that.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap two">
+    <div>
+      <span class="eyebrow" data-reveal="0">How it works</span>
+      <h2 data-reveal="60">No surprises</h2>
+      <ol class="steps" data-reveal="120">
+        <li><div><h3>Call and tell us what is happening</h3><p>Most problems we can price on the phone within a range.</p></div></li>
+        <li><div><h3>We come and look</h3><p>Free inside our service area. You get photographs of whatever we find.</p></div></li>
+        <li><div><h3>Written quote, fixed</h3><p>The number does not change once work starts. If we find something else, we stop and ask.</p></div></li>
+        <li><div><h3>Done, and guaranteed</h3><p>Ten years on roofing labour, two on HVAC parts and labour.</p></div></li>
+      </ol>
+    </div>
+    <div>
+      <img src="img/homeservices/g1.webp" width="1200" height="1500" loading="lazy" decoding="async"
+           style="border:2px solid var(--ink);aspect-ratio:4/5;object-fit:cover;width:100%"
+           alt="New roof tiles being laid in rows" data-reveal="60">
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="eyebrow" data-reveal="0">Recent work</span>
+    <h2 data-reveal="60">Around the county</h2>
+    <div class="gallery" data-reveal="120">
+      <img src="img/homeservices/g2.webp" width="1200" height="1500" loading="lazy" decoding="async" alt="A technician checking the siding at the base of a house">
+      <img src="img/homeservices/g1.webp" width="1200" height="1500" loading="lazy" decoding="async" alt="Roof tiles part way through a replacement">
+      <img src="img/homeservices/g3.webp" width="1200" height="1500" loading="lazy" decoding="async" alt="A finished house exterior after re-roofing">
+    </div>
+  </div>
+</section>
+
+<section id="area">
+  <div class="wrap two">
+    <div>
+      <span class="eyebrow" data-reveal="0">Service area</span>
+      <h2 data-reveal="60">Forty minutes, no travel charge</h2>
+      <p style="margin-top:18px">Outside these we will still come, there is just a call-out fee. Ring and ask and we will be straight with you about whether it is worth it.</p>
+      <ul class="area" data-reveal="60">
+        <li>Halstead</li><li>Mount Pleasant</li><li>Riverton</li><li>Ashgrove</li>
+        <li>Fairview</li><li>Kingsley</li><li>Weston</li><li>Brookend</li>
+      </ul>
+    </div>
+    <div>
+      <h2 data-reveal="60" style="font-size:clamp(22px,3vw,30px)">No heat, no cool,<br>or water coming in?</h2>
+      <p style="margin-top:16px">Do not wait for the morning. Water gets into insulation fast, and a small roof job turns into a ceiling job.</p>
+      <div class="actions" style="margin-top:24px">
+        <a class="btn" href="tel:+15551234567">Call (555) 123-4567</a>
+        <a class="btn btn-dark" href="mailto:hello@example.com">Send photos</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span data-name>Halstead Roofing &amp; HVAC</span>
+    <span>Lic. #HS-44812 &middot; <a href="tel:+15551234567">(555) 123-4567</a></span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var t=document.querySelector('.navtoggle'), m=document.querySelector('nav ul');
+  if(t&&m){
+    function set(o){ t.setAttribute('aria-expanded',o?'true':'false'); m.classList.toggle('open',o); }
+    t.addEventListener('click',function(){ set(t.getAttribute('aria-expanded')!=='true'); });
+    m.addEventListener('click',function(e){ if(e.target.tagName==='A') set(false); });
+    document.addEventListener('keydown',function(e){ if(e.key==='Escape') set(false); });
+  }
+})();
+(function(){
+  var els=document.querySelectorAll('[data-reveal]');
+  if(!('IntersectionObserver' in window)){ els.forEach(function(e){e.classList.add('in');}); return; }
+  var io=new IntersectionObserver(function(en){ en.forEach(function(x){
+    if(!x.isIntersecting) return;
+    x.target.style.transitionDelay=(x.target.dataset.reveal||0)+'ms';
+    x.target.classList.add('in'); io.unobserve(x.target);
+  });},{rootMargin:'0px 0px -8% 0px',threshold:0.08});
+  els.forEach(function(e){io.observe(e);});
+})();
+(function(){
+  var n=new URLSearchParams(location.search).get('name');
+  if(!n) return;
+  document.querySelectorAll('[data-name]').forEach(function(el){ el.textContent=n; });
+  document.title=n+' — Roofing & HVAC';
+})();
+</script>
+</body>
+</html>
