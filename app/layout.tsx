@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Bricolage_Grotesque, Martian_Mono } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const display = Bricolage_Grotesque({ subsets: ["latin"], weight: ["500","700","800"], variable: "--font-bricolage" });
+const mono = Martian_Mono({ subsets: ["latin"], weight: ["400","500"], variable: "--font-martian" });
 
 const SITE = "https://mokshbudhiraja.com";
 
@@ -74,7 +76,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personLd) }}
         />
       </head>
-      <body className={`${inter.className} relative bg-background text-foreground min-h-screen selection:bg-indigo-500/30 selection:text-indigo-200`} suppressHydrationWarning>
+      <body className={`${inter.variable} ${display.variable} ${mono.variable} relative bg-background text-foreground min-h-screen selection:bg-indigo-500/30 selection:text-indigo-200`} suppressHydrationWarning>
         {/* Ambient background Apple/Samsung style glass effects */}
         <div className="fixed inset-0 z-[-1] overflow-hidden pointer-events-none">
           <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] rounded-full bg-indigo-500/10 glow-blur animate-pulse" />

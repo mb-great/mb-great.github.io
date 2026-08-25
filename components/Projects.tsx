@@ -2,9 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
-import { ExternalLink, Dumbbell, PieChart, ChevronDown, ChevronUp } from "lucide-react";
-
-// (Skipping constant declarations for brevity in thought, but need to include them in replacement)
+import { ExternalLink } from "lucide-react";
 
 const CLIENT_PROJECTS = [
   {
@@ -39,29 +37,7 @@ const CLIENT_PROJECTS = [
   }
 ];
 
-const PERSONAL_PROJECTS = [
-  {
-    title: "Gym Exercises Client",
-    desc: "Frontend search application integrating a robust third-party backend API (RapidAPI). Demonstrates clean API data consumption.",
-    icon: Dumbbell,
-    tags: ["React", "RapidAPI", "Frontend"],
-    rounded: "rounded-lg bg-indigo-500/10 text-indigo-500",
-    link: "https://mb-s-gym-exercises.netlify.app/",
-    github: "https://github.com/mb-great/gym-exercises"
-  },
-  {
-    title: "Pie Chart Engine",
-    desc: "Backend pipeline generating animated pie chart MP4s from raw JSON data. Uses Node Canvas and FFmpeg.",
-    icon: PieChart,
-    tags: ["Node.js", "FFmpeg", "Node-Canvas"],
-    rounded: "rounded-lg bg-purple-500/10 text-purple-500",
-    link: null,
-    github: "https://github.com/mb-great/pieChartAnimationGenerator"
-  }
-];
-
 export default function Projects() {
-  const [showAllPersonal, setShowAllPersonal] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -85,10 +61,6 @@ export default function Projects() {
     animationFrameId = requestAnimationFrame(autoScroll);
     return () => cancelAnimationFrame(animationFrameId);
   }, [isHovered]);
-
-  const displayedPersonalProjects = showAllPersonal 
-    ? PERSONAL_PROJECTS 
-    : PERSONAL_PROJECTS.slice(0, 3);
 
   return (
     <section id="proof" className="max-w-7xl mx-auto py-20 overflow-hidden">
@@ -145,7 +117,7 @@ export default function Projects() {
                 
                 <div className="flex gap-3 pt-4 border-t border-border/40">
                   {proj.link && (
-                    <a href={proj.link} target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center gap-2 py-2.5 bg-foreground text-background text-sm font-medium rounded-xl hover:scale-[1.02] transition-transform">
+                    <a href={proj.link} target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center gap-2 py-2.5 min-h-[44px] bg-foreground text-background text-sm font-medium rounded-xl hover:scale-[1.02] transition-transform">
                       <ExternalLink size={14} /> Visit Client
                     </a>
                   )}
@@ -161,72 +133,17 @@ export default function Projects() {
         </div>
       </div>
 
-      {/* --- PERSONAL PROJECTS (GRID + VIEW MORE) --- */}
-      <div className="mt-16 px-6">
-        <div className="mb-12">
-          <span className="text-sm font-semibold tracking-wider text-indigo-500 mb-2 block">02 — EXPERIMENTS</span>
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground">Personal Projects</h2>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {displayedPersonalProjects.map((proj, idx) => {
-            const Icon = proj.icon;
-            return (
-              <div 
-                key={idx} 
-                className="bg-card border border-border/60 rounded-3xl p-8 hover:bg-accent/30 transition-colors shadow-sm flex flex-col"
-              >
-                <div className="flex items-center gap-4 mb-6">
-                  <div className={`w-12 h-12 flex items-center justify-center shadow-sm shrink-0 ${proj.rounded}`}>
-                    <Icon size={24} />
-                  </div>
-                  <h3 className="text-xl font-bold text-card-foreground tracking-tight line-clamp-1">{proj.title}</h3>
-                </div>
-                <p className="text-card-foreground/70 leading-relaxed mb-8 flex-grow">
-                  {proj.desc}
-                </p>
-                
-                <div className="flex flex-col gap-6 mt-auto">
-                  <div className="flex flex-wrap gap-2">
-                    {proj.tags.map(tag => (
-                      <span key={tag} className="px-3 py-1 bg-accent text-accent-foreground text-xs font-medium rounded-full border border-border/40">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                  
-                  <div className="flex gap-3 pt-4 border-t border-border/40">
-                    {proj.link && (
-                      <a href={proj.link} target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center gap-2 py-2 bg-foreground text-background text-sm font-medium rounded-xl hover:scale-[1.02] transition-transform">
-                        <ExternalLink size={14} /> Visit
-                      </a>
-                    )}
-                    {proj.github && (
-                      <a href={proj.github} target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center gap-2 py-2 bg-accent/50 text-foreground text-sm font-medium rounded-xl border border-border/50 hover:bg-accent hover:scale-[1.02] transition-transform">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.2c3-.3 6-1.5 6-6.5a5.5 5.5 0 0 0-1.5-3.8 5.5 5.5 0 0 0-.1-3.8s-1.2-.4-3.9 1.4a13.4 13.4 0 0 0-7 0C6.2 1.5 5 1.9 5 1.9a5.5 5.5 0 0 0-.1 3.8A5.5 5.5 0 0 0 3 9.5c0 5 3 6.2 6 6.5a4.8 4.8 0 0 0-1 3.2v4"/><path d="M9 18c-4.5 1.5-5-2.5-7-3"/></svg> Source
-                      </a>
-                    )}
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-
-        {PERSONAL_PROJECTS.length > 3 && (
-          <div className="mt-10 flex justify-center">
-            <button 
-              onClick={() => setShowAllPersonal(!showAllPersonal)}
-              className="px-6 py-3 bg-accent border border-border text-foreground font-medium rounded-full hover:bg-accent/80 transition-colors flex items-center gap-2"
-            >
-              {showAllPersonal ? (
-                <>View Less <ChevronUp size={16} /></>
-              ) : (
-                <>View All Projects <ChevronDown size={16} /></>
-              )}
-            </button>
-          </div>
-        )}
+      {/* --- SIDE PROJECTS: LINK OUT, DON'T DILUTE THE CLIENT WORK --- */}
+      <div className="mt-8 px-6 flex justify-center">
+        <a
+          href="https://github.com/mb-great?tab=repositories"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 px-6 py-3 bg-accent/50 border border-border/50 text-foreground/70 hover:text-foreground hover:bg-accent text-sm font-medium rounded-full transition-colors"
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.2c3-.3 6-1.5 6-6.5a5.5 5.5 0 0 0-1.5-3.8 5.5 5.5 0 0 0-.1-3.8s-1.2-.4-3.9 1.4a13.4 13.4 0 0 0-7 0C6.2 1.5 5 1.9 5 1.9a5.5 5.5 0 0 0-.1 3.8A5.5 5.5 0 0 0 3 9.5c0 5 3 6.2 6 6.5a4.8 4.8 0 0 0-1 3.2v4"/><path d="M9 18c-4.5 1.5-5-2.5-7-3"/></svg>
+          Side projects and experiments on GitHub
+        </a>
       </div>
 
       <style jsx>{`
