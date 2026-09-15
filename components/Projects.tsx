@@ -1,6 +1,5 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import { ExternalLink } from "lucide-react";
 
@@ -63,33 +62,9 @@ const CLIENT_PROJECTS = [
 ];
 
 export default function Projects() {
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const [isHovered, setIsHovered] = useState(false);
-
-  useEffect(() => {
-    const scrollContainer = scrollRef.current;
-    if (!scrollContainer) return;
-
-    let animationFrameId: number;
-
-    const autoScroll = () => {
-      if (!isHovered) {
-        if (scrollContainer.scrollLeft >= scrollContainer.scrollWidth - scrollContainer.clientWidth - 1) {
-          scrollContainer.scrollLeft = 0; // Loop back
-        } else {
-          scrollContainer.scrollLeft += 1; // Speed
-        }
-      }
-      animationFrameId = requestAnimationFrame(autoScroll);
-    };
-
-    animationFrameId = requestAnimationFrame(autoScroll);
-    return () => cancelAnimationFrame(animationFrameId);
-  }, [isHovered]);
-
   return (
     <section id="proof" className="max-w-7xl mx-auto py-20 overflow-hidden">
-      {/* --- CLIENT WORK (NATIVE AUTO-SCROLL) --- */}
+      {/* --- CLIENT WORK --- */}
       <div className="mb-12 px-6 flex flex-col md:flex-row md:items-end justify-between gap-6">
         <div>
           <span className="text-sm font-semibold tracking-wider text-indigo-500 mb-2 block">01 — PROOF NOT PROMISES</span>
@@ -97,37 +72,31 @@ export default function Projects() {
         </div>
       </div>
 
-      <div className="relative w-full pb-10 mask-edges">
+      <div className="relative w-full pb-10">
         <div 
-          ref={scrollRef}
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-          onTouchStart={() => setIsHovered(true)}
-          onTouchEnd={() => setIsHovered(false)}
-          className="flex gap-6 px-6 overflow-x-auto modern-scrollbar pb-6 w-full"
+          className="flex gap-6 px-6 overflow-x-auto snap-x snap-mandatory modern-scrollbar pb-6 w-full"
         >
-          {/* Tripled list for a seamless native scroll buffer */}
-          {[...CLIENT_PROJECTS, ...CLIENT_PROJECTS, ...CLIENT_PROJECTS].map((proj, idx) => (
+          {CLIENT_PROJECTS.map((proj, idx) => (
             <div 
               key={idx} 
-              className="w-[320px] md:w-[420px] shrink-0 bg-card border border-border/60 rounded-3xl p-8 hover:bg-accent/30 transition-colors shadow-sm flex flex-col"
+              className="w-[85vw] sm:w-[380px] md:w-[420px] shrink-0 bg-card border border-border/60 rounded-3xl p-6 md:p-8 hover:bg-accent/30 transition-colors shadow-sm flex flex-col snap-center"
             >
-              <div className="flex items-center gap-4 mb-6">
-                <div className={`relative w-14 h-14 overflow-hidden shadow-sm shrink-0 flex items-center justify-center ${proj.rounded}`}>
+              <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-6">
+                <div className={`relative h-14 w-14 sm:w-auto sm:min-w-[56px] sm:max-w-[120px] overflow-hidden flex items-center justify-start ${proj.rounded}`}>
                   <Image 
                     src={proj.img} 
                     alt={proj.title} 
                     fill 
-                    sizes="56px"
-                    className="object-contain" 
+                    sizes="(max-width: 768px) 56px, 120px"
+                    className="object-contain object-left" 
                   />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold text-card-foreground tracking-tight line-clamp-1">{proj.title}</h3>
+                  <h3 className="text-xl md:text-2xl font-bold text-card-foreground tracking-tight line-clamp-2">{proj.title}</h3>
                 </div>
               </div>
               <div className="flex-grow flex flex-col mb-8">
-                <p className="text-card-foreground/70 leading-relaxed mb-4">
+                <p className="text-card-foreground/70 leading-relaxed mb-4 text-sm md:text-base">
                   {proj.desc}
                 </p>
                 <div className="mt-auto p-3 bg-accent/20 rounded-lg border border-border/40">
