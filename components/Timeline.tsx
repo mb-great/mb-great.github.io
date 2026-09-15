@@ -18,17 +18,17 @@ const CAREER_DATA = [
     role: "Backend Engineer",
     company: "Pintude",
     date: "Jul 2024 – Jul 2025",
-    desc: "Solely owned two microservices at a funded startup — media generation + news crawler.",
+    desc: "Two of the company's microservices were mine alone for 12 months. Media generation, and a news crawler.",
     bullets: [
-      "Built business card generation service with async job queues and retry isolation across service boundaries.",
-      "Cron-driven news crawler with multilingual classifier across 17 IPTC categories.",
-      "Assets via Node Canvas → AWS S3; deployed on EC2 + PM2 + Nginx, stable for the full year."
+      "Card generation service built on async job queues, with retry isolation so a failure in one job didn't cascade across service boundaries.",
+      "News crawler on cron. Multilingual classifier, all 17 IPTC categories.",
+      "Node Canvas -> S3 for assets. EC2, PM2, Nginx. Ran 12 months in production."
     ]
   },
   {
     role: "Full-Stack Developer (Contract)",
     company: "Infinite Locus",
-    date: "Mar 2024 – Apr 2024",
+    date: "Apr 2024 - May 2024",
     desc: "Shopify storefront features and REST API work in a shared Git codebase.",
     bullets: [
       "Delivered Shopify Liquid layouts and storefront features without breaking live pages.",

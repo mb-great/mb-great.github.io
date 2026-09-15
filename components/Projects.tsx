@@ -9,8 +9,9 @@ const CLIENT_PROJECTS = [
     title: "InvoPilot by SaasKnot",
     role: "Maintainer / Developer",
     desc: "Invoicing SaaS built with Supabase and PostgreSQL. Handled Google OAuth2, Razorpay subscriptions, webhooks, and payment state machines.",
+    outcome: "Scope: Built the billing engine and payment state machine.",
     img: "/invopilot_logo.png",
-    tags: ["Supabase", "PostgreSQL", "OAuth2", "Razorpay"],
+    tags: ["Supabase", "PostgreSQL", "OAuth2", "Razorpay", "WordPress"],
     rounded: "rounded-xl",
     link: "https://invopilot.com",
     github: null
@@ -19,6 +20,7 @@ const CLIENT_PROJECTS = [
     title: "Luxentra Homes",
     role: "Full-Stack Engineer",
     desc: "Next.js landing page with contact form. Handled Vercel deployment, custom domain setup, and DNS configuration.",
+    outcome: "Scope: Built the landing page and handled all the domain and DNS setup.",
     img: "/luxentra_logo.jpg",
     tags: ["Next.js", "React", "Vercel", "DNS"],
     rounded: "rounded-full",
@@ -29,10 +31,33 @@ const CLIENT_PROJECTS = [
     title: "Trydent",
     role: "Full-Stack Engineer",
     desc: "Shopify storefront production-ready setup. Handled Cloudflare DNS, server troubleshooting, and deployment checks.",
+    outcome: "Scope: Got the store live and fixed a bunch of DNS headaches.",
     img: "/trydent_logo.png",
     tags: ["Shopify", "Cloudflare", "DNS"],
     rounded: "rounded-md bg-white p-1",
     link: "https://trydent.in",
+    github: null
+  },
+  {
+    title: "Soulfultaara",
+    role: "Developer",
+    desc: "E-commerce store setup and configuration on Shopify.",
+    outcome: "Scope: Built and launched the Shopify store from scratch.",
+    img: "/globe.svg",
+    tags: ["Shopify", "E-commerce"],
+    rounded: "rounded-md",
+    link: "https://soulfultaara.com",
+    github: null
+  },
+  {
+    title: "Astrix Media Group",
+    role: "Developer",
+    desc: "Corporate website development on WordPress.",
+    outcome: "Scope: Built the main company site on WordPress.",
+    img: "/globe.svg",
+    tags: ["WordPress", "Web Development"],
+    rounded: "rounded-md",
+    link: "https://astrixmediagroup.com",
     github: null
   }
 ];
@@ -102,9 +127,16 @@ export default function Projects() {
                   <span className="text-indigo-500 text-sm font-semibold tracking-wide">{proj.role}</span>
                 </div>
               </div>
-              <p className="text-card-foreground/70 leading-relaxed mb-8 flex-grow">
-                {proj.desc}
-              </p>
+              <div className="flex-grow flex flex-col mb-8">
+                <p className="text-card-foreground/70 leading-relaxed mb-4">
+                  {proj.desc}
+                </p>
+                <div className="mt-auto p-3 bg-accent/20 rounded-lg border border-border/40">
+                  <p className="text-sm font-medium text-indigo-400 leading-snug">
+                    {proj.outcome}
+                  </p>
+                </div>
+              </div>
               
               <div className="flex flex-col gap-6 mt-auto">
                 <div className="flex flex-wrap gap-2">
