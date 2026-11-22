@@ -6,9 +6,7 @@
       "source": "/:path((?:.*/)?[^/]+)\\.html",
       "destination": "/:path",
       "permanent": false
-    }
-  ],
-  "rewrites": [
+    },
     {
       "source": "/",
       "has": [
@@ -17,14 +15,28 @@
           "value": "demo.mokshbudhiraja.com"
         }
       ],
-      "destination": "/demos/"
+      "destination": "/demos",
+      "permanent": false
     },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "(?<sub>(?!www\\.|demo\\.)[a-z0-9-]+)\\.mokshbudhiraja\\.com"
+        }
+      ],
+      "destination": "/demos/:sub",
+      "permanent": false
+    }
+  ],
+  "rewrites": [
     {
       "source": "/:path((?!demos/).*)",
       "has": [
         {
           "type": "host",
-          "value": "demo.mokshbudhiraja.com"
+          "value": "(?!www\\.)[a-z0-9-]+\\.mokshbudhiraja\\.com"
         }
       ],
       "destination": "/demos/:path"
