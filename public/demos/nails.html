@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="en">
+<head>
+<script>document.documentElement.classList.add("js")</script>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ninth &amp; Opal — Nail Studio</title>
+<meta name="description" content="A small nail studio in Austin. Gel, acrylic, pedicures and hand-painted nail art, with prices up front and online booking instead of DMs.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Milky white + deep plum + chrome. Blush is a fill only; plum carries all words.
+   Plum #4A2238 on #FBF7F4 is ~12:1, accent #7A3558 on the same ground ~7.6:1. */
+:root{
+  --bg:#FBF7F4; --surface:#F4E9E6; --blush:#EBCFCB; --line:#E8DCD8;
+  --text:#2A1620; --muted:#6B5560;
+  --plum:#4A2238; --accent:#7A3558;
+  --chrome:linear-gradient(115deg,#F4F4F6 0%,#C9CBD1 28%,#FFFFFF 46%,#A9ADB6 68%,#E9EAED 100%);
+  --display:"Fraunces",Georgia,serif;
+  --body:"DM Sans",system-ui,-apple-system,sans-serif;
+  --pad:104px; --r:18px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--body);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+
+h1{font-family:var(--display);font-weight:300;font-size:clamp(42px,7vw,78px);line-height:1.04;letter-spacing:-0.025em}
+h1 em,h2 em{font-style:italic;color:var(--accent)}
+h2{font-family:var(--display);font-weight:300;font-size:clamp(30px,4.2vw,44px);line-height:1.15;letter-spacing:-0.015em}
+h3{font-weight:500;font-size:16px}
+.eyebrow{display:inline-block;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:500}
+p{color:var(--muted);max-width:60ch}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+nav{position:sticky;top:0;z-index:10;background:rgba(251,247,244,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:70px}
+.brand{font-family:var(--display);font-size:22px;color:var(--plum);text-decoration:none}
+nav ul{display:flex;gap:2px;list-style:none;font-size:14px}
+nav a{display:inline-flex;align-items:center;min-height:44px;padding:0 12px;text-decoration:none;color:var(--muted);transition:color .15s}
+nav a:hover{color:var(--text)}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 26px;border:0;border-radius:999px;cursor:pointer;
+  background:var(--plum);color:#FFF;text-decoration:none;font-family:var(--body);font-weight:500;font-size:15px;transition:transform .15s,opacity .15s}
+.btn:hover{opacity:.9;transform:translateY(-1px)}
+.btn-ghost{background:transparent;color:var(--plum);border:1px solid var(--plum)}
+nav .btn{min-height:44px;padding:0 20px;font-size:14px}
+
+section{padding:var(--pad) 0}
+@media(max-width:800px){:root{--pad:64px}}
+.tint{background:var(--surface)}
+.chrome-rule{height:3px;background:var(--chrome);border:0}
+
+.hero{padding-top:72px;overflow:hidden}
+.hero p{font-size:18px;margin:24px 0 34px}
+.actions{display:flex;gap:12px;flex-wrap:wrap}
+.hero-grid{display:grid;gap:40px;align-items:center}
+@media(min-width:861px){.hero-grid{grid-template-columns:1.05fr .95fr;gap:64px}}
+.hero-frame{position:relative}
+.hero-frame::before{content:"";position:absolute;inset:-14px 14px 14px -14px;border-radius:200px 200px var(--r) var(--r);background:var(--blush);z-index:-1}
+img{display:block;max-width:100%;height:auto}
+.hero-img{aspect-ratio:4/5;object-fit:cover;width:100%;border-radius:200px 200px var(--r) var(--r)}
+.facts{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:30px;font-size:14px;color:var(--muted);list-style:none}
+.facts li::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--chrome);box-shadow:0 0 0 1px #B9BCC4;margin-right:8px;vertical-align:1px}
+
+.menu{display:grid;gap:20px;margin-top:44px}
+@media(min-width:801px){.menu{grid-template-columns:1fr 1fr}}
+.card{background:var(--bg);border:1px solid var(--line);border-radius:var(--r);padding:28px 26px}
+.card h3{font-family:var(--display);font-weight:400;font-size:23px;color:var(--plum);margin-bottom:6px}
+.list{list-style:none}
+.list li{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:13px 0;border-bottom:1px solid var(--line)}
+.list li:last-child{border-bottom:0}
+.list .n{font-weight:500;font-size:15px}
+.list .d{display:block;color:var(--muted);font-size:13.5px;font-weight:400}
+.list .p{color:var(--accent);font-weight:500;white-space:nowrap}
+
+.gallery{display:grid;gap:12px;margin-top:44px;grid-template-columns:1fr 1fr}
+@media(min-width:801px){.gallery{grid-template-columns:repeat(4,1fr)}}
+.gallery figure{position:relative}
+.gallery img{aspect-ratio:4/5;object-fit:cover;width:100%;border-radius:var(--r)}
+.gallery figcaption{position:absolute;left:10px;bottom:10px;background:rgba(251,247,244,.92);color:var(--plum);font-size:12.5px;font-weight:500;padding:4px 12px;border-radius:999px}
+
+.people{display:grid;gap:20px;margin-top:40px}
+@media(min-width:801px){.people{grid-template-columns:1fr 1fr}}
+.who{display:flex;gap:20px;align-items:flex-start;background:var(--bg);border:1px solid var(--line);border-radius:var(--r);padding:26px}
+.mono{flex:none;width:64px;height:64px;border-radius:50%;background:var(--chrome);display:grid;place-items:center;
+  font-family:var(--display);font-size:26px;color:var(--plum);box-shadow:inset 0 0 0 1px #C3C6CD}
+.who .role{display:block;color:var(--accent);font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin:2px 0 10px}
+.who p{font-size:14.5px}
+
+.reviews{display:grid;gap:20px;margin-top:40px}
+@media(min-width:801px){.reviews{grid-template-columns:repeat(3,1fr)}}
+blockquote{background:var(--bg);border-radius:var(--r);padding:28px 26px;border:1px solid var(--line)}
+blockquote p{font-family:var(--display);font-size:19px;line-height:1.5;color:var(--text)}
+blockquote footer{margin-top:16px;font-size:13.5px;color:var(--muted)}
+.stars{color:var(--accent);letter-spacing:2px;font-size:14px;margin-bottom:10px}
+
+.two{display:grid;gap:48px}
+@media(min-width:801px){.two{grid-template-columns:1fr 1fr;gap:72px;align-items:start}}
+.policies{list-style:none;margin-top:28px;counter-reset:p}
+.policies li{position:relative;padding:16px 0 16px 44px;border-bottom:1px solid var(--line)}
+.policies li::before{counter-increment:p;content:counter(p);position:absolute;left:0;top:16px;width:28px;height:28px;border-radius:50%;
+  background:var(--blush);color:var(--plum);font-size:13px;font-weight:500;display:grid;place-items:center}
+.policies strong{display:block;font-weight:500;color:var(--text)}
+.policies span{color:var(--muted);font-size:14.5px}
+
+.hours{list-style:none;font-size:15px;margin-top:22px}
+.hours li{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line);max-width:400px;color:var(--muted)}
+.hours li span:first-child{color:var(--text)}
+.addr{margin-top:24px;color:var(--text);font-style:normal;line-height:1.8}
+.ig{display:inline-flex;align-items:center;gap:10px;margin-top:18px;min-height:44px;color:var(--plum);font-weight:500;text-decoration:none}
+.ig svg{width:22px;height:22px}
+.ig:hover{text-decoration:underline}
+
+form{display:grid;gap:14px;margin-top:28px;background:var(--bg);border:1px solid var(--line);border-radius:var(--r);padding:28px 24px}
+.row{display:grid;gap:14px}
+@media(min-width:561px){.row{grid-template-columns:1fr 1fr}}
+label{display:block;font-size:13px;color:var(--muted);margin-bottom:4px}
+input,select,textarea{width:100%;min-height:48px;padding:11px 14px;background:#FFF;border:1px solid var(--line);border-radius:12px;
+  color:var(--text);font-family:var(--body);font-size:16px}
+textarea{min-height:96px;resize:vertical}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(122,53,88,.15)}
+.small{font-size:13px}
+.thanks{font-family:var(--display);font-size:24px;color:var(--plum);max-width:none}
+
+.site-foot{padding:40px 0 110px;border-top:1px solid var(--line);font-size:14px;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+@media(min-width:801px){.site-foot{padding-bottom:40px}}
+
+/* Sticky mobile book bar. Hidden on desktop where the nav button is always visible. */
+.bookbar{position:fixed;left:12px;right:12px;bottom:12px;z-index:20;display:none}
+.bookbar .btn{width:100%;min-height:54px;box-shadow:0 10px 30px rgba(74,34,56,.28)}
+@media(max-width:800px){.bookbar{display:block}}
+
+/* Scroll reveal. Hidden state is scoped to html.js, so no-JS ships visible. */
+html.js [data-reveal]{opacity:0;transform:translateY(24px)}
+html.js [data-reveal].in{opacity:1;transform:none;
+  transition:opacity .55s cubic-bezier(.22,1,.36,1),transform .55s cubic-bezier(.22,1,.36,1)}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  html.js [data-reveal],html.js [data-reveal].in{opacity:1;transform:none;transition:none}
+}
+
+/* Mobile nav. Links must not simply vanish under the breakpoint. */
+.navtoggle{display:none;width:44px;height:44px;align-items:center;justify-content:center;
+  background:transparent;border:0;cursor:pointer;padding:0;margin-left:auto;margin-right:12px;color:var(--plum)}
+.navtoggle span{display:block;width:22px;height:2px;background:currentColor;position:relative;transition:background .15s}
+.navtoggle span::before,.navtoggle span::after{content:"";position:absolute;left:0;width:22px;height:2px;
+  background:currentColor;transition:transform .22s ease}
+.navtoggle span::before{top:-7px}.navtoggle span::after{top:7px}
+.navtoggle[aria-expanded="true"] span{background:transparent}
+.navtoggle[aria-expanded="true"] span::before{transform:translateY(7px) rotate(45deg)}
+.navtoggle[aria-expanded="true"] span::after{transform:translateY(-7px) rotate(-45deg)}
+@media(max-width:800px){
+  .navtoggle{display:flex}
+  nav ul{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;
+    background:var(--bg);border-bottom:1px solid var(--line);padding:8px 24px 16px}
+  nav ul.open{display:flex}
+  nav ul li{width:100%}
+  nav ul a{min-height:52px;padding:0;width:100%}
+}
+</style>
+</head>
+<body>
+
+<nav aria-label="Main">
+  <div class="wrap">
+    <a class="brand" href="#top" data-name>Ninth &amp; Opal</a>
+    <button class="navtoggle" type="button" aria-expanded="false" aria-controls="navmenu" aria-label="Menu"><span></span></button>
+    <ul id="navmenu">
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#art">Nail art</a></li>
+      <li><a href="#artists">Artists</a></li>
+      <li><a href="#policies">Policies</a></li>
+      <li><a href="#visit">Visit</a></li>
+    </ul>
+    <a class="btn" href="#book">Book</a>
+  </div>
+</nav>
+
+<main id="top">
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <span class="eyebrow" data-reveal="0">Gel &middot; Acrylic &middot; Hand-painted art</span>
+        <h1 data-reveal="60">Nails worth <em>a second look.</em></h1>
+        <p data-reveal="100">A two-chair studio in East Austin. Clean tools every set, prices you can see before you book, and an artist who will actually sit with your Pinterest screenshots.</p>
+        <div class="actions" data-reveal="140">
+          <a class="btn" href="#book">Book an appointment</a>
+          <a class="btn btn-ghost" href="#menu">See prices</a>
+        </div>
+        <ul class="facts" data-reveal="180">
+          <li>Hospital-grade sterilised tools</li>
+          <li>Non-toxic, 10-free polish</li>
+          <li>Free 7-day lift fix</li>
+        </ul>
+      </div>
+      <div class="hero-frame">
+        <img class="hero-img" src="img/nails/hero.webp" width="1200" height="1500"
+             fetchpriority="high" decoding="async"
+             alt="A nail tech filing a client's nails beside a soft pink curing lamp">
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="chrome-rule">
+
+<section id="menu" class="tint">
+  <div class="wrap">
+    <span class="eyebrow" data-reveal="0">Menu</span>
+    <h2 data-reveal="60">Every price, <em>no DM needed.</em></h2>
+    <div class="menu" data-reveal="120">
+      <div class="card">
+        <h3>Hands</h3>
+        <ul class="list">
+          <li><span class="n">Gel manicure<span class="d">Shape, cuticle care, gel colour. 45 min.</span></span><span class="p">$45</span></li>
+          <li><span class="n">Structured gel (BIAB)<span class="d">Builder gel overlay on natural nails. 75 min.</span></span><span class="p">$60</span></li>
+          <li><span class="n">Acrylic full set<span class="d">Short to medium length, one colour. 90 min.</span></span><span class="p">$65</span></li>
+          <li><span class="n">Acrylic fill<span class="d">Up to 3 weeks of growth. 60 min.</span></span><span class="p">$45</span></li>
+          <li><span class="n">Gel-X extensions<span class="d">Soft gel tips, any shape. 90 min.</span></span><span class="p">$70</span></li>
+          <li><span class="n">Soak-off<span class="d">Free with a new set booked here.</span></span><span class="p">$15</span></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Feet</h3>
+        <ul class="list">
+          <li><span class="n">Classic pedicure<span class="d">Soak, scrub, shape, regular polish. 45 min.</span></span><span class="p">$40</span></li>
+          <li><span class="n">Gel pedicure<span class="d">Classic, finished in gel that lasts 4+ weeks.</span></span><span class="p">$55</span></li>
+          <li><span class="n">Spa pedicure<span class="d">Adds callus care, mask and hot-towel massage. 70 min.</span></span><span class="p">$70</span></li>
+        </ul>
+        <h3 style="margin-top:26px">Art add-ons</h3>
+        <ul class="list">
+          <li><span class="n">French or chrome<span class="d">Per set.</span></span><span class="p">+$10</span></li>
+          <li><span class="n">Accent art<span class="d">Two nails, hand-painted.</span></span><span class="p">+$8</span></li>
+          <li><span class="n">Full art set<span class="d">Bring a reference, we quote before we start.</span></span><span class="p">+$20&ndash;45</span></li>
+          <li><span class="n">Charms &amp; 3D<span class="d">Per nail.</span></span><span class="p">+$3</span></li>
+        </ul>
+      </div>
+    </div>
+    <p class="small" style="margin-top:24px">Length over medium adds $10. Prices include a fresh file and buffer for every client, which are yours to take home.</p>
+  </div>
+</section>
+
+<section id="art">
+  <div class="wrap">
+    <span class="eyebrow" data-reveal="0">Nail art</span>
+    <h2 data-reveal="60">Recent sets from the studio.</h2>
+    <div class="gallery" data-reveal="120">
+      <figure>
+        <img src="img/nails/g1.webp" width="1200" height="1500" loading="lazy" decoding="async"
+             alt="Short nails in pink, yellow, blue and white, each with tiny painted polka dots">
+        <figcaption>Candy dots</figcaption>
+      </figure>
+      <figure>
+        <img src="img/nails/g2.webp" width="1200" height="1500" loading="lazy" decoding="async"
+             alt="Almond nails alternating glossy black and nude with a black leopard print">
+        <figcaption>Leopard almond</figcaption>
+      </figure>
+      <figure>
+        <img src="img/nails/g3.webp" width="1200" height="1500" loading="lazy" decoding="async"
+             alt="A nail tech filing a client's nails over a dust extraction table">
+        <figcaption>Clean prep</figcaption>
+      </figure>
+      <figure>
+        <img src="img/nails/g4.webp" width="1200" height="1500" loading="lazy" decoding="async"
+             alt="Four pairs of bare feet raised against a white wall after pedicures">
+        <figcaption>Group pedis</figcaption>
+      </figure>
+    </div>
+    <a class="ig" href="https://www.instagram.com/" target="_blank" rel="noopener" data-reveal="0">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+      More sets on Instagram &rarr; @ninthandopal.studio
+    </a>
+  </div>
+</section>
+
+<section id="artists" class="tint">
+  <div class="wrap">
+    <span class="eyebrow" data-reveal="0">The artists</span>
+    <h2 data-reveal="60">Two chairs, <em>two artists.</em></h2>
+    <div class="people" data-reveal="120">
+      <div class="who">
+        <span class="mono" aria-hidden="true">R</span>
+        <div>
+          <h3>Renata Solís</h3><span class="role">Owner &middot; Structure &amp; acrylic</span>
+          <p>Eight years doing nails, the last five in a busy Houston salon. Opened Ninth &amp; Opal to slow down: one client at a time, no double-booking.</p>
+        </div>
+      </div>
+      <div class="who">
+        <span class="mono" aria-hidden="true">J</span>
+        <div>
+          <h3>Jada Whitlock</h3><span class="role">Nail artist &middot; Hand-painted</span>
+          <p>Freehand florals, chrome, character art. If you can screenshot it she can usually paint it, and she will tell you honestly if it won't hold up at that length.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="reviews">
+  <div class="wrap">
+    <span class="eyebrow" data-reveal="0">Reviews</span>
+    <h2 data-reveal="60">What clients say.</h2>
+    <div class="reviews" data-reveal="120">
+      <blockquote>
+        <div class="stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p>"Three weeks in and not a single lift. Renata fixed a set another place had wrecked."</p>
+        <footer>Kayla M. &middot; Acrylic full set</footer>
+      </blockquote>
+      <blockquote>
+        <div class="stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p>"I showed Jada a blurry screenshot and she made it better than the original."</p>
+        <footer>Andrea L. &middot; Full art set</footer>
+      </blockquote>
+      <blockquote>
+        <div class="stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p>"Finally a studio where I can see the price and book at midnight without messaging anyone."</p>
+        <footer>Tori B. &middot; Gel pedicure</footer>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<section id="policies" class="tint">
+  <div class="wrap two">
+    <div>
+      <span class="eyebrow" data-reveal="0">Policies</span>
+      <h2 data-reveal="60">The fine print, <em>kept short.</em></h2>
+      <p style="margin-top:20px">We are a two-person studio, so one empty chair is half the day. These keep prices fair for everyone.</p>
+    </div>
+    <ol class="policies" data-reveal="120">
+      <li><strong>$20 deposit to book</strong><span>Comes off your total. Full art sets need $30.</span></li>
+      <li><strong>24-hour cancellations</strong><span>Reschedule or cancel up to 24 hours ahead and the deposit moves with you. Inside 24 hours it is kept.</span></li>
+      <li><strong>Running late?</strong><span>Text us. Up to 10 minutes is fine. After 15 we may need to shorten the service or rebook.</span></li>
+      <li><strong>7-day fix guarantee</strong><span>A lift or chip in the first week is repaired free.</span></li>
+      <li><strong>Just you, please</strong><span>The studio is small, so no extra guests unless they are booked too.</span></li>
+    </ol>
+  </div>
+</section>
+
+<section id="visit">
+  <div class="wrap two">
+    <div>
+      <span class="eyebrow" data-reveal="0">Visit</span>
+      <h2 data-reveal="60">Find the studio.</h2>
+      <address class="addr">
+        2417 Bellweather Lane, Suite 6<br>
+        Austin, TX 78702<br>
+        Free parking behind the building<br><br>
+        <a href="tel:+15125550147">(512) 555-0147</a><br>
+        <a href="mailto:hello@example.com">hello@example.com</a>
+      </address>
+      <a class="ig" href="https://www.instagram.com/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+        @ninthandopal.studio
+      </a>
+    </div>
+    <div>
+      <span class="eyebrow" data-reveal="0">Hours</span>
+      <ul class="hours">
+        <li><span>Tuesday &ndash; Thursday</span><span>10 &ndash; 7</span></li>
+        <li><span>Friday</span><span>10 &ndash; 8</span></li>
+        <li><span>Saturday</span><span>9 &ndash; 5</span></li>
+        <li><span>Sunday</span><span>11 &ndash; 4</span></li>
+        <li><span>Monday</span><span>Closed</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="book" class="tint">
+  <div class="wrap two">
+    <div>
+      <span class="eyebrow" data-reveal="0">Book</span>
+      <h2 data-reveal="60">Pick a time, <em>skip the DMs.</em></h2>
+      <p style="margin-top:20px">Send a request and we will confirm by text within a few hours, with a link for the deposit. For art sets, add a reference and we will quote it first.</p>
+    </div>
+    <form id="bookform" novalidate>
+      <div class="row">
+        <div><label for="n">Name</label><input id="n" name="name" autocomplete="name" required></div>
+        <div><label for="ph">Mobile</label><input id="ph" name="phone" type="tel" autocomplete="tel" inputmode="tel" required></div>
+      </div>
+      <div><label for="sv">Service</label>
+        <select id="sv" name="service">
+          <option>Gel manicure</option>
+          <option>Structured gel (BIAB)</option>
+          <option>Acrylic full set</option>
+          <option>Acrylic fill</option>
+          <option>Gel-X extensions</option>
+          <option>Pedicure</option>
+          <option>Not sure yet</option>
+        </select>
+      </div>
+      <div class="row">
+        <div><label for="dt">Preferred day</label><input id="dt" name="date" type="date"></div>
+        <div><label for="tm">Time of day</label>
+          <select id="tm" name="time"><option>Morning</option><option>Afternoon</option><option>Evening</option></select>
+        </div>
+      </div>
+      <div><label for="m">Art ideas or notes</label><textarea id="m" name="notes" placeholder="Optional. Describe the look or mention a reference."></textarea></div>
+      <button class="btn" type="submit">Request appointment</button>
+      <p class="small" role="status" aria-live="polite" id="formmsg"></p>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer class="wrap site-foot">
+  <span data-name>Ninth &amp; Opal</span>
+  <span>Austin, TX &middot; (512) 555-0147</span>
+</footer>
+
+<div class="bookbar"><a class="btn" href="#book">Book an appointment</a></div>
+
+<script>
+// Mobile nav toggle.
+(function(){
+  var t=document.querySelector('.navtoggle'), m=document.querySelector('nav ul');
+  if(!t||!m) return;
+  function set(open){ t.setAttribute('aria-expanded', open?'true':'false'); m.classList.toggle('open', open); }
+  t.addEventListener('click', function(){ set(t.getAttribute('aria-expanded')!=='true'); });
+  m.addEventListener('click', function(e){ if(e.target.tagName==='A') set(false); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') set(false); });
+})();
+
+// Reveal on scroll. No library. Respects reduced-motion via CSS above.
+(function(){
+  var els = document.querySelectorAll('[data-reveal]');
+  if(!('IntersectionObserver' in window)){
+    els.forEach(function(e){ e.classList.add('in'); });
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(!en.isIntersecting) return;
+      var el = en.target;
+      el.style.transitionDelay = (el.dataset.reveal || 0) + 'ms';
+      el.classList.add('in');
+      io.unobserve(el);
+    });
+  }, {rootMargin:'0px 0px -8% 0px', threshold:0.08});
+  els.forEach(function(e){ io.observe(e); });
+})();
+
+// Booking form. Front-end only: validates, then shows a confirmation.
+(function(){
+  var f=document.getElementById('bookform'), msg=document.getElementById('formmsg');
+  if(!f) return;
+  var d=document.getElementById('dt');
+  if(d) d.min=new Date().toISOString().slice(0,10);
+  f.addEventListener('submit', function(e){
+    e.preventDefault();
+    var bad=[].slice.call(f.querySelectorAll('[required]')).filter(function(i){ return !i.value.trim(); });
+    if(bad.length){ msg.textContent='Please add your name and mobile number.'; bad[0].focus(); return; }
+    var first=document.getElementById('n').value.trim().split(' ')[0];
+    f.innerHTML='<p class="thanks" tabindex="-1">Thanks, '+first.replace(/[<>&"]/g,'')+'. We will text you within a few hours to confirm.</p>';
+    f.firstChild.focus();
+  });
+})();
+
+// Name swap: ?name=Polished+Studio
+(function(){
+  var n = new URLSearchParams(location.search).get('name');
+  if(!n) return;
+  document.querySelectorAll('[data-name]').forEach(function(el){ el.textContent = n; });
+  document.title = n + ' — Nail Studio';
+})();
+</script>
+</body>
+</html>
