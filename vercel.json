@@ -7,5 +7,27 @@
       "destination": "/:path",
       "permanent": false
     }
+  ],
+  "rewrites": [
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "demo.mokshbudhiraja.com"
+        }
+      ],
+      "destination": "/demos/"
+    },
+    {
+      "source": "/:path((?!demos/).*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "demo.mokshbudhiraja.com"
+        }
+      ],
+      "destination": "/demos/:path"
+    }
   ]
 }
