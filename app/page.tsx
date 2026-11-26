@@ -5,11 +5,14 @@ import Navbar from "@/components/Navbar";
 
 export default function Home() {
   return (
-    <main className="min-h-screen pt-24 pb-32 overflow-x-hidden">
+    <>
+      {/* Navbar outside <main>: sticky needs the page (not an overflow box) as its scroller, and no padding above it */}
       <Navbar />
-      <Hero />
-      <Projects />
-      <Timeline />
-    </main>
+      <main className="min-h-screen pt-10 pb-32 overflow-x-clip">
+        <Hero />
+        <Projects />
+        <Timeline />
+      </main>
+    </>
   );
 }
